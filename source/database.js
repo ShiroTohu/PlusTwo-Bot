@@ -32,6 +32,7 @@ function createDatabase() {
     }
 }
 
+db = createDatabase()
 module.exports = {
-    createDatabase
+    db
 };

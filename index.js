@@ -1,15 +1,14 @@
 // Require the necessary discord.js classes
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
 const { token } = require('./config.json');
-const { createDatabase } = require('./source/database')
+const { db } = require('./source/database')
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.commands = new Collection();
-client.db = createDatabase();
 
 // find the commands folder
 const foldersPath = path.join(__dirname, 'commands');
@@ -35,6 +34,8 @@ for (const folder of commandFolders) {
 // It makes some properties non-nullable.
 client.once(Events.ClientReady, readyClient => {
     console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+
+    client.user.setActivity('https://youtu.be/q2FYfDpEpGc', { type: ActivityType.Watching });
 });
 
 client.on(Events.InteractionCreate, async interaction => {
@@ -60,7 +61,7 @@ client.on(Events.InteractionCreate, async interaction => {
 })
 
 process.on('SIGINT', function() {
-    client.db.close()
+    db.close()
     console.log('database closed')
     process.exit();
 });
