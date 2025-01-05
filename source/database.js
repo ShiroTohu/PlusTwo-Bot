@@ -1,7 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('node:fs');
-const path = require('node:path');
-const { run } = require('node:test');
 
 function createDatabase() {
     const folder = 'database/'

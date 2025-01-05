@@ -6,7 +6,15 @@ const { token } = require('./config.json');
 const { db } = require('./source/database')
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ 
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.MessageContent
+    ] 
+});
 
 client.commands = new Collection();
 
@@ -57,6 +65,15 @@ client.on(Events.InteractionCreate, async interaction => {
 		} else {
 			await interaction.reply({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
 		}
+    }
+})
+
+client.on(Events.MessageCreate, async message => {
+    if (message.type == 19) {
+        repliedTo = await message.fetchReference();
+        if (message.content === "+2" | message.content === "-2") {
+            message.react('1325312547662073906');
+        }
     }
 })
 
