@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ShiroTohu/Jerma-Bot#readme",
   "dependencies": {
     "discord.js": "^14.17.2",
+    "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
