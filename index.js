@@ -3,11 +3,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
+const { createDatabase } = require('./source/database')
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.commands = new Collection();
+client.db = createDatabase();
 
 // find the commands folder
 const foldersPath = path.join(__dirname, 'commands');
@@ -56,6 +58,12 @@ client.on(Events.InteractionCreate, async interaction => {
 		}
     }
 })
+
+process.on('SIGINT', function() {
+    client.db.close()
+    console.log('database closed')
+    process.exit();
+});
 
 // Log in to Discord with your client's token
 client.login(token);
