@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
 const { token } = require('./config.json');
-const { db } = require('./source/database')
+const { Database } = require('./source/database')
 
 // Create a new client instance
 const client = new Client({ 
@@ -17,6 +17,8 @@ const client = new Client({
 });
 
 client.commands = new Collection();
+client.db = Database.createDatabase();
+console.log('database initalized')
 
 // find the commands folder
 const foldersPath = path.join(__dirname, 'commands');
@@ -78,7 +80,7 @@ client.on(Events.MessageCreate, async message => {
 })
 
 process.on('SIGINT', function() {
-    db.close()
+    client.db.close()
     console.log('database closed')
     process.exit();
 });
