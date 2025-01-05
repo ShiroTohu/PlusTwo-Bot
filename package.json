@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/ShiroTohu/Jerma-Bot#readme",
   "dependencies": {
-    "discord.js": "^14.17.2"
+    "discord.js": "^14.17.2",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "eslint": "^9.17.0"
