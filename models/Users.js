@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    sequelize.define('scores', {
+    return sequelize.define('scores', {
         user_id: {
             type: DataTypes.INTEGER,
             unique: true,
@@ -18,4 +18,4 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         timestamps: false,
     });
-}
+};
