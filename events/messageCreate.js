@@ -6,8 +6,13 @@ module.exports = {
         const REPLY = 19;
         if (message.type == REPLY) {
             repliedTo = await message.fetchReference();
-            if (message.content === "+2" | message.content === "-2") {
-                message.react('1325312547662073906');
+            switch (message.content) {
+                case "+2":
+                    repliedTo.react('1325696309671231561');
+                    break;
+                case "-2":
+                    repliedTo.react('1325696373903065128');
+                    break;
             }
         }
     }
