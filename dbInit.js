@@ -7,8 +7,11 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 	storage: 'database/database.sqlite',
 });
 
-const Scores = require('./models/Scores.js')(sequelize, Sequelize.DataTypes);
+// module is ran like a function
+require('./models/Users.js')(sequelize, Sequelize.DataTypes);
 
 const force = process.argv.includes('--force') || process.argv.includes('-f');
 
+// you could use sync to insert dummy data into the database as seen in
+// https://discordjs.guide/sequelize/currency.html#initialize-database
 sequelize.sync({ force });
