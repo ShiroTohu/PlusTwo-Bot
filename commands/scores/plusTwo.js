@@ -9,6 +9,6 @@ module.exports = {
 			.setRequired(true)
 		),
 	async execute(interaction) {
-		await interaction.reply('that\'s a boom!');
+		await interaction.reply('That\'s a boom!');
 	},
 };
