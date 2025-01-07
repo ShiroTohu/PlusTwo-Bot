@@ -9,6 +9,7 @@ module.exports = {
 			.setRequired(true)
 		),
 	async execute(interaction) {
-		await interaction.reply('That\'s a doom.');
+		const user = interaction.options.getUser('user') ?? interaction.user;
+		await Users.minusTwo(user);
 	},
 };

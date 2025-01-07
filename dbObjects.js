@@ -21,7 +21,7 @@ Reflect.defineProperty(Users.prototype, 'plusTwo', {
 			User.score += delta;
 			return userItem.save();
 		} else {
-			Users.create({user_id: this.user_id, username: user.username, score: 0 })
+			return Users.create({user_id: this.user_id, username: user.username, score: 0 })
 		}
 	},
 });
@@ -36,7 +36,7 @@ Reflect.defineProperty(Users.prototype, 'minusTwo', {
 			User.score += delta;
 			return userItem.save();
 		} else {
-			Users.create({user_id: this.user_id, username: user.username, score: 0 })
+			return Users.create({user_id: this.user_id, username: user.username, score: 0 })
 		}
 	},
 });

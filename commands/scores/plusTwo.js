@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const { Users } = require('../../dbObjects.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -9,6 +10,7 @@ module.exports = {
 			.setRequired(true)
 		),
 	async execute(interaction) {
-		await interaction.reply('That\'s a boom!');
+		const user = interaction.options.getUser('user') ?? interaction.user;
+		await Users.plusTwo(user);
 	},
 };
