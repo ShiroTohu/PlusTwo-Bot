@@ -4,21 +4,22 @@ const { Users } = require('../dbObjects.js');
 module.exports = {
     name: Events.MessageCreate,
     async execute(message) {
-        const user = message.author;
-        console.log(user)
         const REPLY = 19;
+
         if (message.type == REPLY) {
             repliedTo = await message.fetchReference();
             switch (message.content) {
                 case "+2":
-                    await Users.findOne({
-                        where: {user_id: user.id}
-                    }).plusTwo(user);
+                    Users.findOne({
+                        where: {user_id: repliedTo.author.id}
+                    }).then(res => {
+                        console.log(res);
+                    })
                     break;
                 case "-2":
-                    await Users.findOne({
-                        where: {user_id: user.id}
-                    }).plusTwo(user);
+                    Users.findOne({
+                        where: {user_id: repliedTo.author.id}
+                    })
                     break;
             }
         }
