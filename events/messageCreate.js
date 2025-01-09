@@ -13,12 +13,14 @@ module.exports = {
                     Users.findOne({
                         where: {user_id: repliedTo.author.id}
                     }).then(res => {
-                        console.log(res);
+                        res.plusTwo(repliedTo.author);
                     })
                     break;
                 case "-2":
                     Users.findOne({
                         where: {user_id: repliedTo.author.id}
+                    }).then(res => {
+                        res.minusTwo(repliedTo.author);
                     })
                     break;
             }
