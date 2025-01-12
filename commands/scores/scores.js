@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const { Users } = require('../../dbObjects')
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -19,6 +20,19 @@ module.exports = {
 		        ),
         ),
 	async execute(interaction) {
-		await interaction.reply('Boom or Doom!');
+		const leaderboard = await Users.findAll({
+            attributes: ['username', 'score'],
+            limit: 10,
+            order: [['score', 'DESC']]
+        });
+
+        message = "";
+
+        for (let i = 0; i < leaderboard.length; i++) {
+            const user = leaderboard[i];
+            message += `${i + 1} ${user.username} ${user.score} \n`;
+        }
+
+        interaction.reply(message);
 	},
 };

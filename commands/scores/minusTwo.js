@@ -12,6 +12,6 @@ module.exports = {
 	async execute(interaction) {
 		const user = interaction.options.getUser('user') ?? interaction.user;
 		await alterScore(user, -2);
-		interaction.reply(`+2 ${user.username}`)
+		interaction.reply(`<:minus2:1325696373903065128> ${user.username}`)
 	},
 };
