@@ -10,7 +10,7 @@ module.exports = {
 			.setRequired(true)
 		),
 	async execute(interaction) {
-		const user = interaction.options.getUser('user') ?? interaction.user;
+		const user = interaction.options.getUser('target');
 		await alterScore(user, 2);
 		interaction.reply(`<:plus2:1325696309671231561> ${user.username}`);
 	},
