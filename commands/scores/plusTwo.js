@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { Users } = require('../../dbObjects.js');
+const { alterScore } = require('../../dbObjects.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -11,6 +11,7 @@ module.exports = {
 		),
 	async execute(interaction) {
 		const user = interaction.options.getUser('user') ?? interaction.user;
-		await Users.plusTwo(user);
+		await alterScore(user, 2);
+		interaction.reply(`+2 ${user.username}`);
 	},
 };

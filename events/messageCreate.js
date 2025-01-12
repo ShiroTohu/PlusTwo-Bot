@@ -1,17 +1,5 @@
 const { Events } = require('discord.js');
-const { Users } = require('../dbObjects.js');
-
-async function alterScore(referenceAuthor, delta) {
-    const user = await Users.findOne({
-        where: {user_id: referenceAuthor.id}
-    });
-
-    if (user) {
-        return await user.increment('score', { by: delta });
-    }
-    
-    return await Users.create({user_id: referenceAuthor.id, username: referenceAuthor.username, score: delta});
-}
+const { alterScore } = require('../dbObjects.js');
 
 module.exports = {
     name: Events.MessageCreate,
