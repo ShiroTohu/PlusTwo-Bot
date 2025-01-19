@@ -8,6 +8,8 @@ Here are some ways you can alter someones score.
 
 Remeber to have fun. By default users can only +2 someone 5 times a day, though can be disabled
 with \`/modoptions\`.
+
+**DO NOT TRY TO +2 YOURSELF**
 `
 
 module.exports = {
