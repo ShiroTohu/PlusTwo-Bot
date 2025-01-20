@@ -8,6 +8,9 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 });
 
 const Users = require('./models/Users.js')(sequelize, Sequelize.DataTypes);
+const UserScores = require('./models/UserScores.js')(sequelize, Sequelize.DataTypes);
+const Guilds = require('./models/Guilds.js')(sequelize, Sequelize.DataTypes);
+
 
 /**
  * Alters the score of a user in the database given a delta. If the user doesn't
