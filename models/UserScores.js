@@ -11,13 +11,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
-            primaryKey: true
         },
         user_id: {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
-            primaryKey: true
         },
         score: {
             type: DataTypes.INTEGER,
