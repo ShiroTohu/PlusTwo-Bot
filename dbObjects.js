@@ -12,6 +12,23 @@ const UserScores = require('./models/UserScores.js')(sequelize, Sequelize.DataTy
 const Guilds = require('./models/Guilds.js')(sequelize, Sequelize.DataTypes);
 
 /**
+ * Adds a methods to the User prototype that get's their score from
+ * the associated guild.
+ */
+Reflect.defineProperty(Users.prototype, 'getScore', {
+	value: async guildId => {
+		const score = await GuildScores.findOne({
+            attributes: ['score'],
+			where: { user_id: this.user_id, guild_id: guildId },
+		});
+
+		if (score) {
+			return score;
+		}
+	},
+});
+
+/**
  * Alters the score of a user in the database given a delta. If the user doesn't
  * exist in the database, the user is created with the delta as the initial value.
  * 

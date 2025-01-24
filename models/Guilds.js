@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
             allowNull: false,
             primaryKey: true
+        },
+        daily_limit: {
+            type: DataTypes.INTEGER,
+            default: 10
         }
     }, {
         timestamps: false
