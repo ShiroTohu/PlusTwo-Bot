@@ -1,9 +1,10 @@
 const { SlashCommandBuilder, EmbedBuilder, bold } = require('discord.js');
-const { Users } = require('../../dbObjects')
+const { Scores } = require('../../dbObjects');
+const { logger } = require('../../logger.js');
 
 async function createLeaderboard(interaction) {
-    console.group(`${interaction.user.username} ran /leaderboard`);
-    const users = await UserScores.findAll({
+    logger.info('hello world')
+    const users = await Scores.findAll({
         where: {
             guild_id: interaction.guild.id
         },
@@ -16,7 +17,6 @@ async function createLeaderboard(interaction) {
 
     leaderboard = '';
 
-    console.log(`leaderboard returned with ${users.length} users`);
     if (users) {
         for (let i = 0; i < users.length; i++) {
             const user = users[i];
@@ -31,12 +31,11 @@ async function createLeaderboard(interaction) {
         .setColor(0x0099FF)
         .setDescription(`The +2 leaderboard for ${interaction.guild.name}!`)
         .setAuthor({ name: `${guild.name} - Leaderboard`, iconURL: guild.iconURL() })
-        .setThumbnail(topUser.displayAvatarURL())
+        .setThumbnail(topUser.displayAvatarURL()) 
         .addFields(
             {name: '\u200b', value: leaderboard}
-        )
+        );
 
-    console.groupEnd();
     return leaderboardEmbed
 }
 
