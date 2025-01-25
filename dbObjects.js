@@ -8,8 +8,15 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 });
 
 const Users = require('./models/Users.js')(sequelize, Sequelize.DataTypes);
-const UserScores = require('./models/UserScores.js')(sequelize, Sequelize.DataTypes);
+const Scores = require('./models/Scores.js')(sequelize, Sequelize.DataTypes);
 const Guilds = require('./models/Guilds.js')(sequelize, Sequelize.DataTypes);
+
+// defining associations
+Users.hasMany(Scores);
+Guilds.hasMany(Scores);
+
+Scores.hasOne(Users);
+Scores.hasOne(Guilds);
 
 /**
  * Adds a methods to the User prototype that get's their score from
@@ -17,7 +24,7 @@ const Guilds = require('./models/Guilds.js')(sequelize, Sequelize.DataTypes);
  */
 Reflect.defineProperty(Users.prototype, 'getScore', {
 	value: async guildId => {
-		const score = await GuildScores.findOne({
+		const score = await Scores.findOne({
             attributes: ['score'],
 			where: { user_id: this.user_id, guild_id: guildId },
 		});

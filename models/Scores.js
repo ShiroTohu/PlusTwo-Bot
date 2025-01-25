@@ -6,7 +6,7 @@
  * @returns a model
  */
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('user_scores', {
+    return sequelize.define('scores', {
         guild_id: {
             type: DataTypes.STRING,
             unique: true,
