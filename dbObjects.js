@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const { logger } = require('./logger.js')
 
 const sequelize = new Sequelize('database', 'username', 'password', {
 	host: 'localhost',
@@ -54,5 +55,7 @@ async function alterScore(referenceAuthor, delta) {
     
     return await Users.create({user_id: referenceAuthor.id, username: referenceAuthor.username, score: delta});
 }
+
+logger.info('DB Models Loaded');
 
 module.exports = { Users, alterScore };

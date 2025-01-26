@@ -1,30 +1,18 @@
 const { SlashCommandBuilder, EmbedBuilder, bold } = require('discord.js');
-const { Scores } = require('../../dbObjects');
+const { Scores, Guilds, Users } = require('../../dbObjects');
 const { logger } = require('../../logger.js');
 
-async function createLeaderboard(interaction) {
-    logger.info('hello world')
-    const users = await Scores.findAll({
-        where: {
-            guild_id: interaction.guild.id
-        },
-        limit: 10,
-        order: [['score', 'DESC']]
-    });
+// TODO: make users into scores
 
-    const guild = interaction.guild;
-    const topUser = await interaction.client.users.fetch(users[0].user_id);
+async function getLeaderboard(interaction) {
+    logger.info("/leaderboard command used");
 
-    leaderboard = '';
+    const guild = await Guilds.findOne({
+        where : {guild_id: interaction.guild.id}
+    })
 
-    if (users) {
-        for (let i = 0; i < users.length; i++) {
-            const user = users[i];
-            leaderboard += `${i + 1}. ${user.username} - ${user.score} \n`;
-        }
-
-    } else {
-        leaderboard = 'No one is on the leaderboard. +2 someone to start!'
+    if (!guild) {
+        logger.warn('no guild found');
     }
 
     const leaderboardEmbed = new EmbedBuilder()
@@ -44,7 +32,7 @@ module.exports = {
 		.setName('leaderboard')
 		.setDescription('get the score a user or a leaderboard of +2\'s'),
 	async execute(interaction) {
-        const leaderboardEmbed = await createLeaderboard(interaction); 
+        const leaderboardEmbed = await getLeaderboard(interaction);
         interaction.reply({ embeds: [leaderboardEmbed] });
 	},
 };
