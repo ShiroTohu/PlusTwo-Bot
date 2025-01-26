@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
 const { token } = require('./config.json');
+const { logger } = require('./source/logger');
 
 // Create a new client instance
 const client = new Client({ 
@@ -16,11 +17,10 @@ const client = new Client({
 });
 
 client.commands = new Collection();
-// client.db = Database.createDatabase();
-// console.log('database initalized')
 
 // command handler
-const foldersPath = path.join(__dirname, 'commands');
+logger.info('configuring commands');
+const foldersPath = path.join(__dirname, 'source/commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
@@ -39,7 +39,8 @@ for (const folder of commandFolders) {
 }
 
 // event handler
-const eventsPath = path.join(__dirname, 'events');
+logger.info('configuring events');
+const eventsPath = path.join(__dirname, 'source/events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
@@ -52,11 +53,4 @@ for (const file of eventFiles) {
 	}
 }
 
-// process.on('SIGINT', function() {
-//     client.db.close()
-//     console.log('database closed')
-//     process.exit();
-// });
-
-// Log in to Discord with your client's token
 client.login(token);

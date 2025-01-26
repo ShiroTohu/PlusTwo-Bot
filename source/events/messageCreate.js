@@ -1,5 +1,5 @@
 const { Events } = require('discord.js');
-const { alterScore } = require('../dbObjects.js');
+const { alterScore } = require('../database/dbObjects');
 
 module.exports = {
     name: Events.MessageCreate,

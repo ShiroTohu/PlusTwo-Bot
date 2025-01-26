@@ -1,7 +1,7 @@
-const leaderboard = require('../commands/scores/leaderboard');
+const leaderboard = require('../source/commands/scores/leaderboard');
 const { beforeEach } = require('./beforeEach')
 
-test('testBoldLetters', () => {
+test('testEmbedField', () => {
     const fields = [];
     expect(true).toBe(true);
 });
