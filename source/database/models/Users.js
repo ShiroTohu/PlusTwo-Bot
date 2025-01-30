@@ -1,5 +1,22 @@
+const { Model } = require(sequelize); 
+const { Score } = require('./Scores')
+
+class User extends Model {
+    plusTwo(guildId) {
+        this.alterScore(this.user_id, 2);
+    }
+
+    minusTwo(guildId) {
+        this.alterScore(this.user_id, -2)
+    }
+
+    getUsername() {
+
+    }
+}
+
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('users', {
+    return User.init({
         user_id: {
             type: DataTypes.STRING,
             unique: true,
@@ -11,6 +28,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     }, {
+        sequelize,
         timestamps: false,
+        modelName: 'Score',
     });
 };
