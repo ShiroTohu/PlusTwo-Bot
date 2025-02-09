@@ -1,7 +1,11 @@
-const { Model } = require(sequelize); 
+const { Model } = require('sequelize'); 
 const { Score } = require('./Scores')
 
 class User extends Model {
+  static alterScore(user_id, delta) {
+        
+  }  
+
     plusTwo(guildId) {
         this.alterScore(this.user_id, 2);
     }

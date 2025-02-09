@@ -1,7 +1,6 @@
-const { Model } = require(sequelize); 
+const { Model } = require('sequelize'); 
 
-class Score extends Model {
-    /**
+class Score extends Model { /**
      * Alters the score of a user in the database given a delta. If the user doesn't
      * exist in the database, the user is created with the delta as the initial value.
      * 
@@ -22,7 +21,7 @@ class Score extends Model {
     }
 
     static getLeaderBoard() {
-
+        return true; 
     }
 }
 
