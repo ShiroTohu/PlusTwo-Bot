@@ -1,24 +1,9 @@
 const { Model } = require('sequelize'); 
-const { Score } = require('./Scores')
+const { Score } = require('./Scores');
 
-class User extends Model {
-  static alterScore(user_id, delta) {
-        
-  }  
+class User extends Model { }
 
-    plusTwo(guildId) {
-        this.alterScore(this.user_id, 2);
-    }
-
-    minusTwo(guildId) {
-        this.alterScore(this.user_id, -2)
-    }
-
-    getUsername() {
-
-    }
-}
-
+// returns a function that initalizes the User Model
 module.exports = (sequelize, DataTypes) => {
     return User.init({
         user_id: {

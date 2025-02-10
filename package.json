@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/ShiroTohu/Jerma-Bot#readme",
   "dependencies": {
-    "discord.js": "^14.17.2",
+    "commander": "^13.1.0",
+    "discord.js": "^14.14.1",
     "pino": "^9.6.0",
     "pino-pretty": "^13.0.0",
     "sequelize": "^6.37.5",

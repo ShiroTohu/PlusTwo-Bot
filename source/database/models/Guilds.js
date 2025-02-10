@@ -1,3 +1,5 @@
+const { Model } = require('sequelize');
+
 /**
  * The guild, stores the settings of the guild which can be changed with ModOptions.
  * 

@@ -19,10 +19,6 @@ class Score extends Model { /**
         
         return await Users.create({user_id: referenceAuthor.id, username: referenceAuthor.username, score: delta});
     }
-
-    static getLeaderBoard() {
-        return true; 
-    }
 }
 
 /**
