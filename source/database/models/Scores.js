@@ -8,16 +8,20 @@ class Score extends Model { /**
      * @param {int} delta the delta to alter the score by
      * @returns A User Model
      */
-    static async alterScore(userId, guildId, delta) {
+    static async #alterScore(userId, guildId, delta) {
         const user = await Users.findOne({
             where: {user_id: userId, guild_id: guildId}
         });
 
         if (user) {
             return await user.increment('score', { by: delta });
-        }
-        
-        return await Users.create({user_id: referenceAuthor.id, username: referenceAuthor.username, score: delta});
+        } else {
+            return await Users.create({user_id: referenceAuthor.id, username: referenceAuthor.username, score: delta});
+        } 
+    }
+
+    static async plusTwo(userId) {
+
     }
 }
 
