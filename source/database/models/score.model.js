@@ -36,13 +36,17 @@ module.exports = (sequelize, DataTypes) => {
     return Score.init({
         guild_id: {
             type: DataTypes.STRING,
-            unique: true,
-            allowNull: false,
+            references: {
+              model: Guild,
+              key: 'guild_id'
+            }
         },
         user_id: {
             type: DataTypes.STRING,
-            unique: true,
-            allowNull: false,
+            references: {
+              model: User,
+              key: 'user_id'
+            }
         },
         score: {
             type: DataTypes.INTEGER,
