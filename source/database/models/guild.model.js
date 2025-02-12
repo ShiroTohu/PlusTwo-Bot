@@ -1,5 +1,20 @@
 const { Model } = require('sequelize');
 
+// The Guild Model has some helper methods to make code throughout more readable.
+class Guild extends Model {
+  static async getLeaderboard(guildId) {
+    // functionality here
+  }
+
+  static async plusTwo(userId) {
+    // functionality here
+  }
+
+  static async minusTwo(userId) {
+    // functionality here 
+  }
+}
+
 /**
  * The guild, stores the settings of the guild which can be changed with ModOptions.
  * 
@@ -8,7 +23,7 @@ const { Model } = require('sequelize');
  * @returns a model
  */
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('guilds', {
+    return Guild.init({
         guild_id: {
             type: DataTypes.STRING,
             unique: true,

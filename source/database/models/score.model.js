@@ -1,29 +1,6 @@
 const { Model } = require('sequelize'); 
 
-class Score extends Model { /**
-     * Alters the score of a user in the database given a delta. If the user doesn't
-     * exist in the database, the user is created with the delta as the initial value.
-     * 
-     * @param {User} referenceAuthor discord.js User object.
-     * @param {int} delta the delta to alter the score by
-     * @returns A User Model
-     */
-    static async #alterScore(userId, guildId, delta) {
-        const user = await Users.findOne({
-            where: {user_id: userId, guild_id: guildId}
-        });
-
-        if (user) {
-            return await user.increment('score', { by: delta });
-        } else {
-            return await Users.create({user_id: referenceAuthor.id, username: referenceAuthor.username, score: delta});
-        } 
-    }
-
-    static async plusTwo(userId) {
-
-    }
-}
+class Score extends Model { }
 
 /**
  * The guild, stores the settings of the guild which can be changed with ModOptions.
@@ -32,7 +9,7 @@ class Score extends Model { /**
  * @param {DataType} DataTypes 
  * @returns a model
  */
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes, Guild, User) => {
     return Score.init({
         guild_id: {
             type: DataTypes.STRING,

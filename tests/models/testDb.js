@@ -1,6 +1,5 @@
 const { Sequelize } = require('Sequelize');
 
-
 function initalizeTestDatabase() {
   const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -16,3 +15,5 @@ function initalizeTestDatabase() {
 
   await sequelize.sync();
 }
+
+module.exports { initalizeTestDatabase }
