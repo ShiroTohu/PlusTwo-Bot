@@ -5,6 +5,8 @@ const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require(
 const { token } = require('./config.json');
 const { logger } = require('./source/logger');
 
+require('./source/parser.js');
+
 // Create a new client instance
 const client = new Client({ 
     intents: [
