@@ -8,9 +8,9 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 });
 
 // module is ran like a function
-const User = require('./models/Users.js')(sequelize, Sequelize.DataTypes);
-const Guild = require('./models/Guilds.js')(sequelize, Sequelize.DataTypes);
-const Score = require('./models/Scores.js')(sequelize, Sequelize.DataTypes, Guild, User);
+const User = require('./models/user.model.js')(sequelize, Sequelize.DataTypes);
+const Guild = require('./models/guild.model.js')(sequelize, Sequelize.DataTypes);
+const Score = require('./models/score.model.js')(sequelize, Sequelize.DataTypes, Guild, User);
 
 // TODO: commander
 const force = process.argv.includes('--force') || process.argv.includes('-f');
