@@ -1,5 +1,5 @@
 const { Model } = require('sequelize'); 
-const { Score } = require('./Scores');
+const { Score } = require('./score.model');
 
 class User extends Model { }
 

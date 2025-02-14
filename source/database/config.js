@@ -1,12 +1,10 @@
-import { config } from "dotenv"
-
-module.exports({
+module.exports = {
   development: {
     database: process.env.DB_NAME,
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST,
-    dialect: "sqlite",
+    dialect: "postgresql",
     logging: false
   },
   test: {
@@ -14,8 +12,15 @@ module.exports({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     host: process.env.DB_TEST_HOST,
-    dialect: "sqlite",
+    dialect: "postgresql",
     logging: false
   },
-  production: {}
-})
+  production: {
+    database: process.env.DB_NAME,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_TEST_HOST,
+    dialect: "postgresql",
+    logging: false
+  }
+};

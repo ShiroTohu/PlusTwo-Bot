@@ -1,8 +1,8 @@
-const { Guild } = require('../../source/database/dbInit.js');
+const { Guild } = require('../../source/database/database.js');
 const { initializeTestDatabase } = require('./testDb.js');
 
-beforeEach(() => {
-  initializeTestDatabase();
+beforeEach(async () => {
+  await initializeTestDatabase();
 });
 
 test('Retrieving the leaderboard', async () => {

@@ -2,8 +2,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
-require('@dotenvx/dotenvx').config();
 
+require('@dotenvx/dotenvx').config();
 require('./source/parser.js');
 const { logger } = require('./source/logger');
 
@@ -55,4 +55,4 @@ for (const file of eventFiles) {
 	}
 }
 
-client.login(token);
+client.login(process.env.DISCORD_TOKEN);

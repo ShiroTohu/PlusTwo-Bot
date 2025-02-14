@@ -4,7 +4,7 @@
   "description": "Debt collector",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "NODE_ENV=test jest"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,8 @@
     "@dotenvx/dotenvx": "^1.36.0",
     "commander": "^13.1.0",
     "discord.js": "^14.14.1",
+    "pg": "^8.13.3",
+    "pg-hstore": "^2.3.4",
     "pino": "^9.6.0",
     "pino-pretty": "^13.0.0",
     "sequelize": "^6.37.5",

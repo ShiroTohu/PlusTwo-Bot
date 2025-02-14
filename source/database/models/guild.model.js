@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
             default: 10
         }
     }, {
+        sequelize,
         timestamps: false
     });
 };

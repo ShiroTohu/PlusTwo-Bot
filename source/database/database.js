@@ -1,13 +1,15 @@
 // responsible for initalizing the database
 const Sequelize = require('sequelize');
+const env = process.env.NODE_ENV || 'development';
+const config = require('./config.js')[env];
+const { logger } = require('../logger.js');
 
-const sequelize = new Sequelize('database', 'username', 'password', { 
-  host: 'localhost',
-  dialect: 'sqlite',
-  logging: false,
-  storage: 'database/database.sqlite',
-});
+// defaults to the devleopment database
+const sequelize = new Sequelize(
+  config
+);
 
+logger.info('Setting up models');
 // module is ran like a function
 const User = require('./models/user.model.js')(sequelize, Sequelize.DataTypes);
 const Guild = require('./models/guild.model.js')(sequelize, Sequelize.DataTypes);
@@ -18,7 +20,8 @@ const force = process.argv.includes('--force') || process.argv.includes('-f');
 
 // This syncs the models (User, Guild, Score) with the database making sure that everything
 // such as rows and columns match up. If a model doesn't exist in the database a table will be
-// created for it. 
+// created for it.
+logger.info('Syncing Models');
 sequelize.sync({ force });
 
 module.exports = { User, Guild, Score };
