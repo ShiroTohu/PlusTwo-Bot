@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/ShiroTohu/Jerma-Bot#readme",
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.36.0",
     "commander": "^13.1.0",
     "discord.js": "^14.14.1",
     "pino": "^9.6.0",

@@ -2,10 +2,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
-const { token } = require('./config.json');
-const { logger } = require('./source/logger');
+require('@dotenvx/dotenvx').config();
 
 require('./source/parser.js');
+const { logger } = require('./source/logger');
 
 // Create a new client instance
 const client = new Client({ 
