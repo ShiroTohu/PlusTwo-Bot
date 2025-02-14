@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, bold } = require('discord.js');
-const { Scores, Guilds, Users } = require('../../database/dbObjects.js');
+const { Scores, Guilds, Users } = require('../../database/database.js');
 const { logger } = require('../../logger.js');
 
 // TODO: make users into scores

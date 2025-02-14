@@ -4,7 +4,7 @@ function initalizeTestDatabase() {
   const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: ':memory:',
-  }
+  });
 
   const User = require('../../source/database/models/Users.js')(sequelize, Sequelize.DataTypes);
   const Score = require('../../source/database/models/Scores.js')(sequelize, Sequelize.DataTypes);

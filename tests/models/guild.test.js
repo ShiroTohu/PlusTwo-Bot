@@ -5,14 +5,14 @@ beforeEach(() => {
   initializeTestDatabase();
 });
 
-test('Retrieving the leaderboard', () => {
+test('Retrieving the leaderboard', async () => {
   await Guild.getLeaderboard(guildId);
 });
 
-test('Plus two a user', () => {
+test('Plus two a user', async () => {
   await Guild.plusTwo(userId);
 });
 
-test('Minus two a user', () => {
+test('Minus two a user', async () => {
   await Guild.minustwo(userId);
 });
