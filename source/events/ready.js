@@ -1,4 +1,5 @@
 const { Events, ActivityType } = require('discord.js');
+const { logger } = require('../logger')
 
 title = `
      ██╗███████╗██████╗ ███╗   ███╗ █████╗     ██████╗  ██████╗ ████████╗
@@ -15,7 +16,7 @@ module.exports = {
     execute(client) {
         console.clear();
         console.log(title);
-        console.log(`Logged in as ${client.user.tag}`);
+        logger.info(`Logged in as ${client.user.tag}`);
         client.user.setActivity('https://youtu.be/q2FYfDpEpGc', { type: ActivityType.Watching });
     }
 };

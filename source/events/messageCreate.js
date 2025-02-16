@@ -1,10 +1,12 @@
 const { Events } = require('discord.js');
 const { Guild } = require('../database/database');
+const { logger } = require('../logger');
 
 module.exports = {
     name: Events.MessageCreate,
     async execute(message) {
         const REPLY = 19;
+        logger.info('message received');
 
         if (message.type == REPLY) {
             const reference = await message.fetchReference()
