@@ -7,6 +7,9 @@ require('@dotenvx/dotenvx').config();
 require('./source/parser.js');
 const { logger } = require('./source/logger');
 
+const { setupDatabase } = require('./source/database/database.js');
+setupDatabase();
+
 // Create a new client instance
 const client = new Client({ 
     intents: [
