@@ -25,6 +25,8 @@ function setupDatabase() {
   // be created for it.
   logger.info('Syncing Models');
   sequelize.sync({ force });
+
+  return sequelize;
 };
 
 module.exports = { setupDatabase };

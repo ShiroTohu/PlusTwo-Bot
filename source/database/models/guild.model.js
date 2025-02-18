@@ -3,14 +3,14 @@ const { Model } = require('sequelize');
 // The Guild Model has some helper methods to make code throughout more readable.
 class Guild extends Model {
   static async getLeaderboard(guildId) {
+    console.log(guildId);
+  }
+
+  async plusTwo(userId) {
     // functionality here
   }
 
-  static async plusTwo(userId) {
-    // functionality here
-  }
-
-  static async minusTwo(userId) {
+  async minusTwo(userId) {
     // functionality here 
   }
 }
