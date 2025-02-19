@@ -2,15 +2,23 @@ const Guild = require('../../source/database/models/guild.model.js');
 const { setupDatabase } = require('../../source/database/database.js');
 
 describe('test Guild methods', () => {
-  let sequelize = setupDatabase();
-
-  afterEach(async () => {
-    await sequelize.sync({ force: true });
-  });
+  let sequelize;
 
   beforeEach(async () => {
-    sequelize = setupDatabase();
-  })
+      sequelize = await setupDatabase(true);
+  });
+
+  afterEach(async () => {
+      const force = true;
+      await sequelize.sync({force});
+  });
+
+  test('get guild', async () => {
+    const Guild = sequelize.models.Guild;
+    const guild = await Guild.getGuild(827597916039017000);
+
+    console.log(guild);
+  });
 
   test('the guild model getLeaderboard method exists', async() => {
     console.log(sequelize.models.Guild);

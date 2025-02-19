@@ -2,8 +2,16 @@ const { Model } = require('sequelize');
 
 // The Guild Model has some helper methods to make code throughout more readable.
 class Guild extends Model {
-  static async getLeaderboard(guildId) {
-    console.log(guildId);
+  static async getGuild(guildId) {
+    return await this.findAll({
+      where: {
+        guild_id: guildId
+      }
+    });
+  }
+
+  async getLeaderboard() {
+    console.log('temp');
   }
 
   async plusTwo(userId) {
@@ -32,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         daily_limit: {
             type: DataTypes.INTEGER,
-            default: 10
+            defaultValue: 10
         }
     }, {
         sequelize,

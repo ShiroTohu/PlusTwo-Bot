@@ -4,31 +4,26 @@ const env = process.env.NODE_ENV || 'development';
 const { logger } = require('../logger.js');
 const config = require('./config.js')[env];
 
-async function setupDatabase(force) {
+async function setupDatabase(force = false) {
   logger.info(`Setting up ${env} Database`);
   // defaults to the devleopment database
   const sequelize = new Sequelize(
     config
   );
 
-  logger.info('Setting up models');
   // module is ran like a function
   const User = require('./models/user.model.js')(sequelize, Sequelize.DataTypes);
   const Guild = require('./models/guild.model.js')(sequelize, Sequelize.DataTypes);
   const Score = require('./models/score.model.js')(sequelize, Sequelize.DataTypes, Guild, User);
 
-  logger.info('Syncing Models');
-  await sequelize.sync({ force });
+  // This syncs the models (User, Guild, Score) with the database making sure that everything
+  // such as rows and columns match up. If a model doesn't exist in the database a table will
+  // be created for it.
+  await sequelize.sync({force});
 
   if (env == 'test') {
     await insertDummyData(sequelize);
   }
-
-  // This syncs the models (User, Guild, Score) with the database making sure that everything
-  // such as rows and columns match up. If a model doesn't exist in the database a table will
-  // be created for it.
-  logger.info('Syncing Models');
-  await sequelize.sync();
 
   return sequelize;
 };
@@ -58,6 +53,9 @@ async function insertDummyData(sequelize) {
     {guild_id: 667792375797365060, user_id: 161640664076316994},
     {guild_id: 626184277834279176, user_id: 997027454665226734},
   ]);
+
+  // logger.info('Syncing Models');
+  await sequelize.sync();
 }
 
 module.exports = { setupDatabase };
