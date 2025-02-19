@@ -17,6 +17,9 @@ function setupDatabase() {
   const Guild = require('./models/guild.model.js')(sequelize, Sequelize.DataTypes);
   const Score = require('./models/score.model.js')(sequelize, Sequelize.DataTypes, Guild, User);
 
+  User.belongsToMany(Guild, { through: Score });
+  Guild.belongsToMany(User, { through: Score });
+
   // TODO: commander
   const force = process.argv.includes('--force') || process.argv.includes('-f');
 

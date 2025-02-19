@@ -4,8 +4,8 @@ const { setupDatabase } = require('../../source/database/database.js');
 describe('test Guild methods', () => {
   let sequelize = setupDatabase();
 
-  afterAll(async () => {
-    await sequelize.sync({ force: true })
+  afterEach(async () => {
+    await sequelize.sync({ force: true });
   });
 
   test('the guild model getLeaderboard method exists', async() => {
@@ -35,12 +35,14 @@ describe('test Guild methods', () => {
   
   test('plus two a user', async () => {
     const userId = 1234567890;
+    const Guild = sequelize.models.Guild;
 
     await Guild.plusTwo(userId);
   });
   
   test('minus two a user', async () => {
     const userId = 1234567890;
+    const Guild = sequelize.models.Guild;
 
     await Guild.minustwo(userId);
   });
