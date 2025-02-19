@@ -8,6 +8,10 @@ describe('test Guild methods', () => {
     await sequelize.sync({ force: true });
   });
 
+  beforeEach(async () => {
+    sequelize = setupDatabase();
+  })
+
   test('the guild model getLeaderboard method exists', async() => {
     console.log(sequelize.models.Guild);
     const Guild = sequelize.models.Guild;

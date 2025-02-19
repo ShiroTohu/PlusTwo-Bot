@@ -36,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         sequelize,
-        timestamps: false
+        timestamps: false,
+        modelName: 'Guild'
     });
 };

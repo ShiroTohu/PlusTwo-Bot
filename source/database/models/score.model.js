@@ -32,6 +32,6 @@ module.exports = (sequelize, DataTypes, Guild, User) => {
     }, {
         sequelize,
         timestamps: false,
-        modelName: 'Score',
+        modelName: 'Score'
     });
 };
