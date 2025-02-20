@@ -1,29 +1,37 @@
-const { setupDatabase } = require('../source/database/database.js');
+const { setupDatabase, insertDummyData } = require('../source/database/database.js');
+
+// test('dummy data', async () => {
+//     sequelize = await setupDatabase();
+//     await insertDummyData(sequelize);
+//     const users = sequelize.models.Users.findAll();
+
+//     await sequelize.sync({force: true});
+// })
 
 describe('setupDatabase function', () => {
     let sequelize;
 
     beforeEach(async () => {
-        sequelize = await setupDatabase(false);
+        sequelize = await setupDatabase();
+        await insertDummyData(sequelize);
     });
 
     afterEach(async () => {
-        const force = true;
-        await sequelize.sync({force});
+        await sequelize.sync({force: true});
     });
 
     test('sample data all good', async () => {
         const Score = sequelize.models.Score;
         const scores = await Score.findAll();
-        expect(scores);
-    })
-
-    test('create database if no database found', async () => {
-        const force = true;
-        // sequelize.sync({force});
+        expect(scores).not.toBeNull();
     });
+
+    // test('create database if no database found', async () => {
+    //     const force = true;
+    //     // sequelize.sync({force});
+    // });
     
     // test('pass if database already created', async () => {
         
     // });
-})
+});

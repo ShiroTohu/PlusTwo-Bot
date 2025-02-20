@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV || 'development';
 const { logger } = require('../logger.js');
 const config = require('./config.js')[env];
 
-async function setupDatabase(force = false) {
+async function setupDatabase() {
   logger.info(`Setting up ${env} Database`);
   // defaults to the devleopment database
   const sequelize = new Sequelize(
@@ -19,11 +19,7 @@ async function setupDatabase(force = false) {
   // This syncs the models (User, Guild, Score) with the database making sure that everything
   // such as rows and columns match up. If a model doesn't exist in the database a table will
   // be created for it.
-  await sequelize.sync({force});
-
-  if (env == 'test') {
-    await insertDummyData(sequelize);
-  }
+  await sequelize.sync();
 
   return sequelize;
 };
@@ -40,22 +36,22 @@ async function insertDummyData(sequelize) {
     {user_id: 455840886956257287, username: 'Jeremy Elbertson'},
     {user_id: 161640664076316994, username: 'Otto'},
     {user_id: 997027454665226734, username: 'BallFondler'},
+    {user_id: 667792375797365060, username: 'Among Us Guy'}
   ])
 
   await Guild.bulkCreate([
-    {guild_id: 827597916039016962},
-    {guild_id: 667792375797365060},
-    {guild_id: 626184277834279176},
+    {guild_id: 827597916039016962}
   ]);
 
   await Score.bulkCreate([
     {guild_id: 827597916039016962, user_id: 455840886956257287},
-    {guild_id: 667792375797365060, user_id: 161640664076316994},
-    {guild_id: 626184277834279176, user_id: 997027454665226734},
+    {guild_id: 827597916039016962, user_id: 161640664076316994},
+    {guild_id: 827597916039016962, user_id: 997027454665226734},
+    {guild_id: 827597916039016962, user_id: 667792375797365060},
   ]);
 
   // logger.info('Syncing Models');
   await sequelize.sync();
 }
 
-module.exports = { setupDatabase };
+module.exports = { setupDatabase, insertDummyData };
