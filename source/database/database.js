@@ -37,7 +37,7 @@ async function insertDummyData(sequelize) {
     {user_id: 161640664076316994, username: 'Otto'},
     {user_id: 997027454665226734, username: 'BallFondler'},
     {user_id: 667792375797365060, username: 'Among Us Guy'}
-  ])
+  ]);
 
   await Guild.bulkCreate([
     {guild_id: 827597916039016962}

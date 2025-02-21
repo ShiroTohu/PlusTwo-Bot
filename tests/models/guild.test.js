@@ -1,11 +1,12 @@
 const Guild = require('../../source/database/models/guild.model.js');
-const { setupDatabase } = require('../../source/database/database.js');
+const { setupDatabase, insertDummyData } = require('../../source/database/database.js');
 
 describe('test Guild methods', () => {
   let sequelize;
 
   beforeEach(async () => {
-      sequelize = await setupDatabase();
+    sequelize = await setupDatabase();
+    await insertDummyData(sequelize);
   });
 
   afterEach(async () => {
@@ -17,8 +18,19 @@ describe('test Guild methods', () => {
     const guild = await Guild.getGuild(827597916039017000);
 
     console.log(guild)
-    expect(guild);
+    expect(guild).not.toBeNull();
+
+    await sequelize.sync({ force: true });
   });
+
+  test('create a guild', async () => {
+    const Guild = sequelize.models.Guild;
+    await Guild.createGuild(912834509182370012);
+
+    const guild = await Guild.getGuild(912834509182370012);
+    console.log(guild);
+    expect(guild)
+  })
 
   // test('the guild model getLeaderboard method exists', async() => {
   //   console.log(sequelize.models.Guild);

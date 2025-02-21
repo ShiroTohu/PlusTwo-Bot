@@ -6,3 +6,4 @@ database.sqlite
 coverage/
 .env
 testing.sqlite
+development.sqlite
