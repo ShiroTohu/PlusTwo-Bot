@@ -6,7 +6,7 @@ class User extends Model { }
 // returns a function that initalizes the User Model
 module.exports = (sequelize, DataTypes) => {
     return User.init({
-        user_id: {
+        userId: {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,

@@ -9,20 +9,20 @@ class Score extends Model { }
  * @param {DataType} DataTypes 
  * @returns a model
  */
-module.exports = (sequelize, DataTypes, Guild, User) => {
+module.exports = (sequelize, DataTypes) => {
     return Score.init({
-        guild_id: {
+        guildId: {
             type: DataTypes.STRING,
             references: {
-              model: Guild,
-              key: 'guild_id'
+              model: 'Guilds',
+              key: 'guildId'
             }
         },
-        user_id: {
+        userId: {
             type: DataTypes.STRING,
             references: {
-              model: User,
-              key: 'user_id'
+              model: 'Users',
+              key: 'userId'
             }
         },
         score: {

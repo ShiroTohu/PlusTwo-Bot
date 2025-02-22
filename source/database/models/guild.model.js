@@ -17,7 +17,13 @@ class Guild extends Model {
   }
 
   async getLeaderboard() {
-    console.log('temp');
+    return await Guild.findAll({
+      where: {
+        guild_id: this.guild_id
+      },
+      order: [['score', 'DESC']],
+      include: Guild.sequelize.models.Score
+    })
   }
 
   async plusTwo(userId) {
@@ -38,13 +44,13 @@ class Guild extends Model {
  */
 module.exports = (sequelize, DataTypes) => {
     return Guild.init({
-        guild_id: {
+        guildId: {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
             primaryKey: true
         },
-        daily_limit: {
+        dailyLimit: {
             type: DataTypes.INTEGER,
             defaultValue: 10
         }
