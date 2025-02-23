@@ -13,9 +13,9 @@ describe('setupDatabase and insertDummyData functions', () => {
         await sequelize.sync({force: true});
     });
 
-    test('pass if setup and teardown function are ok', async () => {
-        const Score = sequelize.models.Score;
-        const scores = await Score.findAll();
-        expect(scores).not.toBeNull();
+    test('pass if data in database', async () => {
+        await expect(sequelize.models.User.findAll()).resolves.not.toBeNull();
+        await expect(sequelize.models.Guild.findAll()).resolves.not.toBeNull();
+        await expect(sequelize.models.Score.findAll()).resolves.not.toBeNull();
     });
 });
