@@ -31,30 +31,25 @@ async function setupDatabase() {
  * inserts dummy data into the testing database
  */
 async function insertDummyData(sequelize) {
-  const User = sequelize.models.User;
-  const Guild = sequelize.models.Guild;
-  const Score = sequelize.models.Score;
+  // console.log(sequelize);
 
-  await User.bulkCreate([
-    {user_id: 455840886956257287, username: 'Jeremy Elbertson'},
-    {user_id: 161640664076316994, username: 'Otto'},
-    {user_id: 997027454665226734, username: 'BallFondler'},
-    {user_id: 667792375797365060, username: 'Among Us Guy'}
+  await sequelize.models.User.bulkCreate([
+    {userId: 455840886956257287, username: 'Jeremy Elbertson'},
+    {userId: 161640664076316994, username: 'Otto'},
+    {userId: 997027454665226734, username: 'BallFondler'},
+    {userId: 667792375797365060, username: 'Among Us Guy'}
   ]);
 
-  await Guild.bulkCreate([
-    {guild_id: 827597916039016962}
+  await sequelize.models.Guild.bulkCreate([
+    {guildId: 827597916039016962}
   ]);
 
-  await Score.bulkCreate([
-    {guild_id: 827597916039016962, user_id: 455840886956257287},
-    {guild_id: 827597916039016962, user_id: 161640664076316994},
-    {guild_id: 827597916039016962, user_id: 997027454665226734},
-    {guild_id: 827597916039016962, user_id: 667792375797365060},
+  await sequelize.models.Score.bulkCreate([
+    {guildId: 827597916039016962, userId: 455840886956257287},
+    {guildId: 827597916039016962, userId: 161640664076316994},
+    {guildId: 827597916039016962, userId: 997027454665226734},
+    {guildId: 827597916039016962, userId: 667792375797365060},
   ]);
-
-  // logger.info('Syncing Models');
-  await sequelize.sync();
 }
 
 module.exports = { setupDatabase, insertDummyData };

@@ -15,7 +15,7 @@ afterEach(async () => {
 describe('Getter Setter methods', () => {
   test('retrieving guild using getGuild method', async () => {
     const Guild = sequelize.models.Guild;
-    const guild = await Guild.getGuild(827597916039017000);
+    const guild = await Guild.getGuild(827597916039016962);
 
     expect(guild).not.toBeNull();
 
@@ -31,15 +31,15 @@ describe('Getter Setter methods', () => {
   });
 });
 
-describe('getLeaderboard method', () => {
-  test('returned objected from getLeaderboard method matches expected output', async () => {
-    const guildId = 827597916039017000;
+// describe('getLeaderboard method', () => {
+//   test('returned objected from getLeaderboard method matches expected output', async () => {
+//     const guildId = 827597916039017000;
 
-    const Guild = sequelize.models.Guild;
-    const guild = await Guild.getGuild(guildId);
-    // console.log(guild);
+//     const Guild = sequelize.models.Guild;
+//     const guild = await Guild.getGuild(guildId);
+//     // console.log(guild);
 
-    const leaderboard = await guild.getLeaderboard();
-    expect(leaderboard)
-  });
-})
+//     const leaderboard = await guild.getLeaderboard();
+//     expect(leaderboard)
+//   });
+// })

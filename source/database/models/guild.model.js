@@ -5,21 +5,21 @@ class Guild extends Model {
   static async getGuild(guildId) {
     return await this.findOne({
       where: {
-        guild_id: guildId
+        guildId: guildId
       }
     });
   }
 
   static async createGuild(guildId) {
     return await this.create({
-      guild_id: guildId.toString()
+      guildId: guildId.toString()
     });
   }
 
   async getLeaderboard() {
     return await Guild.findAll({
       where: {
-        guild_id: this.guild_id
+        guildId: this.guild_id
       },
       order: [['score', 'DESC']],
       include: Guild.sequelize.models.Score
