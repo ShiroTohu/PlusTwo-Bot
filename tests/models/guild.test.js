@@ -3,6 +3,9 @@ const { setupDatabase, insertDummyData } = require('../../source/database/databa
 
 let sequelize;
 
+// this guild actually exists in the dummy data
+const existingGuildId = 827597916039016962;
+
 beforeEach(async () => {
   sequelize = await setupDatabase();
   await insertDummyData(sequelize);
@@ -15,7 +18,7 @@ afterEach(async () => {
 describe('Getter Setter methods', () => {
   test('retrieving guild using getGuild method', async () => {
     const Guild = sequelize.models.Guild;
-    const guild = await Guild.getGuild(827597916039016962);
+    const guild = await Guild.getGuild(existingGuildId);
 
     expect(guild).not.toBeNull();
 
@@ -31,15 +34,13 @@ describe('Getter Setter methods', () => {
   });
 });
 
-// describe('getLeaderboard method', () => {
-//   test('returned objected from getLeaderboard method matches expected output', async () => {
-//     const guildId = 827597916039017000;
+describe('getLeaderboard method', () => {
+  test('returned objected from getLeaderboard method matches expected output', async () => {
 
-//     const Guild = sequelize.models.Guild;
-//     const guild = await Guild.getGuild(guildId);
-//     // console.log(guild);
+    const Guild = sequelize.models.Guild;
+    const guild = await Guild.getGuild(existingGuildId);
 
-//     const leaderboard = await guild.getLeaderboard();
-//     expect(leaderboard)
-//   });
-// })
+    const leaderboard = await guild.getLeaderboard();
+    expect(leaderboard)
+  });
+})
