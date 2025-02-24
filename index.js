@@ -7,10 +7,8 @@ require('@dotenvx/dotenvx').config();
 require('./source/parser.js');
 const { logger } = require('./source/logger');
 
-if (!fs.existsSync(path)) {
-  logger.fatal('.env file not found');
-  process.exit();
-}
+const { verifyDotEnv } = require('./source/verify-dotenv.js');
+verifyDotEnv();
 
 const { setupDatabase } = require('./source/database/database.js');
 setupDatabase();
