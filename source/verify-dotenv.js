@@ -9,8 +9,11 @@ function verifyDotEnv() {
   
   logger.info('.env file found');
 
-  const environmentVariables = [
+  const requiredVariables = [
     "DISCORD_TOKEN",
+  ];
+
+  const databaseVariables = [
     "DB_NAME",
     "DB_USER",
     "DB_PASSWORD",
@@ -18,8 +21,17 @@ function verifyDotEnv() {
     "DB_TEST_HOST",
   ];
 
-  for (const index in environmentVariables) {
-    variable = environmentVariables[index]; 
+  checkEnv(requiredVariables);
+
+  if (process.env.NODE_ENV == 'production') {
+    logger.info('production environment variable detected, proceeding to check database credentials in .env')
+    checkEnv(databaseVariables);
+  }
+}
+
+function checkEnv(variables) {
+  for (const index in variables) {
+    variable = variables[index]; 
     if (variable in process.env) {
       logger.info(`${variable} found in process.env`);
     } else {
