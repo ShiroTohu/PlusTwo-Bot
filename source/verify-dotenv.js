@@ -10,7 +10,12 @@ function verifyDotEnv() {
   logger.info('.env file found');
 
   const environmentVariables = [
-    "DISCORD_TOKEN"
+    "DISCORD_TOKEN",
+    "DB_NAME",
+    "DB_USER",
+    "DB_PASSWORD",
+    "DB_HOST",
+    "DB_TEST_HOST",
   ];
 
   for (const index in environmentVariables) {
