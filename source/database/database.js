@@ -16,8 +16,11 @@ async function setupDatabase() {
   const Guild = require('./models/guild.model.js')(sequelize, Sequelize.DataTypes);
   const Score = require('./models/score.model.js')(sequelize, Sequelize.DataTypes);
 
-  User.belongsToMany(Guild, { through: Score, foreignKey: 'userId' });
-  Guild.belongsToMany(User, { through: Score, foreignKey: 'guildId' });
+  // User.belongsToMany(Guild, { through: Score, foreignKey: 'userId' });
+  // Guild.belongsToMany(User, { through: Score, foreignKey: 'guildId' });
+
+  User.hasMany(Score, {foreignKey: 'userId'});
+  Guild.hasMany(Score, {foreignKey: 'guildId'});
 
   // This syncs the models (User, Guild, Score) with the database making sure that everything
   // such as rows and columns match up. If a model doesn't exist in the database a table will

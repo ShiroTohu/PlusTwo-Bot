@@ -19,11 +19,10 @@ class Guild extends Model {
   async getLeaderboard() {
     return await Guild.findAll({
       where: {
-        guildId: this.guild_id
+        guildId: this.guildId
       },
-      order: [['score', 'DESC']],
-      include: Guild.sequelize.models.Score
-    })
+      include: Guild.sequelize.model.Score
+    });
   }
 
   async plusTwo(userId) {

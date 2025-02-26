@@ -2,15 +2,23 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
-
 require('@dotenvx/dotenvx').config();
 require('./source/parser.js');
+
 const { logger } = require('./source/logger');
-
 const { verifyDotEnv } = require('./source/verify-dotenv.js');
-verifyDotEnv();
-
 const { setupDatabase } = require('./source/database/database.js');
+
+console.log(`
+     ██╗███████╗██████╗ ███╗   ███╗ █████╗     ██████╗  ██████╗ ████████╗
+     ██║██╔════╝██╔══██╗████╗ ████║██╔══██╗    ██╔══██╗██╔═══██╗╚══██╔══╝
+     ██║█████╗  ██████╔╝██╔████╔██║███████║    ██████╔╝██║   ██║   ██║   
+██   ██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══██║    ██╔══██╗██║   ██║   ██║   
+╚█████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║  ██║    ██████╔╝╚██████╔╝   ██║   
+ ╚════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   
+`)
+
+verifyDotEnv();
 setupDatabase();
 
 // Create a new client instance
