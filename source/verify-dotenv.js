@@ -26,14 +26,17 @@ function verifyDotEnv() {
   if (process.env.NODE_ENV == 'production') {
     logger.info('production environment variable detected, proceeding to check database credentials in .env')
     checkEnv(databaseVariables);
+    logger.info('production environment variables verified');
+    return;
   }
+
+  logger.info('environment variables verified');
 }
 
 function checkEnv(variables) {
   for (const index in variables) {
     variable = variables[index]; 
     if (variable in process.env) {
-      logger.info(`${variable} found in process.env`);
     } else {
       logger.fatal(`${variable} NOT found in process.env. Check that you have set the ${variable} variable in your .env file`);
       process.exit();

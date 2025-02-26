@@ -41,7 +41,7 @@ describe('getLeaderboard method', () => {
     const guild = await Guild.getGuild(existingGuildId);
 
     const leaderboard = await guild.getLeaderboard();
-    console.log(leaderboard.score); 
+    console.log(leaderboard); 
     expect(leaderboard).not.toBeNull();
   });
 })
