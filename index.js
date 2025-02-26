@@ -5,10 +5,12 @@ const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require(
 require('@dotenvx/dotenvx').config();
 require('./source/parser.js');
 
+// source code imports
 const { logger } = require('./source/logger');
 const { verifyDotEnv } = require('./source/verify-dotenv.js');
 const { setupDatabase } = require('./source/database/database.js');
 
+// logs this cool ASCII art to the terminal. Pretty cool right?
 console.log(`
      ██╗███████╗██████╗ ███╗   ███╗ █████╗     ██████╗  ██████╗ ████████╗
      ██║██╔════╝██╔══██╗████╗ ████║██╔══██╗    ██╔══██╗██╔═══██╗╚══██╔══╝
@@ -16,20 +18,25 @@ console.log(`
 ██   ██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══██║    ██╔══██╗██║   ██║   ██║   
 ╚█████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║  ██║    ██████╔╝╚██████╔╝   ██║   
  ╚════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   
-`)
+`);
 
+/**
+	verifies that all of the contents needed inside of .env are present. 
+  It then set's up a sequelize instance with the database config
+	specified. If none are specfied it defaults to the development config.
+ */
 verifyDotEnv();
 setupDatabase();
 
 // Create a new client instance
 const client = new Client({ 
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildMessageReactions,
-        GatewayIntentBits.MessageContent
-    ] 
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.MessageContent
+  ] 
 });
 
 client.commands = new Collection();
