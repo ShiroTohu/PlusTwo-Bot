@@ -1,10 +1,14 @@
+// this module is for when the user parses --help as a argument to the
+// program.
+
 const { Command } = require('commander');
 const program = new Command();
 
 program
   .name('Jerma Bot')
-  .description('Debt collector.')
+  .description('+2/-2 your friends with this funny little bot.')
   .version('0.0.0')
   .option('-v, --verbose', 'increase the output of logs', 0)
+  .option('--prod', 'Production database is used. requires .env to have login information.')
 
 program.parse();

@@ -41,7 +41,8 @@ const client = new Client({
 
 client.commands = new Collection();
 
-// command handler
+// command handler. These need to be called here because the require statement does not
+// work inside of a function. Therefore it is left here unabstracted.
 logger.info('configuring commands');
 const foldersPath = path.join(__dirname, 'source/commands');
 const commandFolders = fs.readdirSync(foldersPath);
@@ -76,4 +77,5 @@ for (const file of eventFiles) {
 	}
 }
 
+// login to discord
 client.login(process.env.DISCORD_TOKEN);

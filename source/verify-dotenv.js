@@ -9,10 +9,12 @@ function verifyDotEnv() {
   
   logger.info('.env file found');
 
+  // variables that are required in order for the program to run
   const requiredVariables = [
     "DISCORD_TOKEN",
   ];
 
+  // required only when the user connects to postgres (production environment)
   const databaseVariables = [
     "DB_NAME",
     "DB_USER",
@@ -33,6 +35,7 @@ function verifyDotEnv() {
   logger.info('environment variables verified');
 }
 
+// checks if a environment variable exists given a list.
 function checkEnv(variables) {
   for (const index in variables) {
     variable = variables[index]; 

@@ -18,9 +18,6 @@ class Guild extends Model {
 
   async getLeaderboard() {
     return await Guild.findAll({
-      where: {
-        guildId: this.guildId
-      },
       include: Guild.sequelize.model.Score
     });
   }
