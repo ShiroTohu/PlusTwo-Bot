@@ -3,13 +3,13 @@ const { setupDatabase, insertDummyData } = require('../source/database/database.
 describe('setupDatabase and insertDummyData functions', () => {
     let sequelize;
 
-    beforeEach(async () => {
+    beforeAll(async () => {
         sequelize = await setupDatabase();
         console.log(sequelize.models.User);
         await insertDummyData(sequelize);
     });
 
-    afterEach(async () => {
+    afterAll(async () => {
         await sequelize.sync({force: true});
     });
 

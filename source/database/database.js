@@ -37,21 +37,21 @@ async function insertDummyData(sequelize) {
   // console.log(sequelize);
 
   await sequelize.models.User.bulkCreate([
-    {userId: 455840886956257287, username: 'Jeremy Elbertson'},
-    {userId: 161640664076316994, username: 'Otto'},
-    {userId: 997027454665226734, username: 'BallFondler'},
-    {userId: 667792375797365060, username: 'Among Us Guy'}
+    {userId: '455840886956257287', username: 'Jeremy Elbertson'},
+    {userId: '161640664076316994', username: 'Otto'},
+    {userId: '997027454665226734', username: 'BallFondler'},
+    {userId: '667792375797365060', username: 'Among Us Guy'}
   ]);
 
   await sequelize.models.Guild.bulkCreate([
-    {guildId: 827597916039016962}
+    {guildId: '827597916039016962'}
   ]);
 
   await sequelize.models.Score.bulkCreate([
-    {guildId: 827597916039016962, userId: 455840886956257287},
-    {guildId: 827597916039016962, userId: 161640664076316994},
-    {guildId: 827597916039016962, userId: 997027454665226734},
-    {guildId: 827597916039016962, userId: 667792375797365060},
+    {guildId: '827597916039016962', userId: '455840886956257287'},
+    {guildId: '827597916039016962', userId: '161640664076316994'},
+    {guildId: '827597916039016962', userId: '997027454665226734'},
+    {guildId: '827597916039016962', userId: '667792375797365060'},
   ]);
 }
 
