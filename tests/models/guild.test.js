@@ -1,4 +1,3 @@
-const Guild = require('../../source/database/models/guild.model.js');
 const { setupDatabase, insertDummyData } = require('../../source/database/database.js');
 
 let sequelize;
@@ -20,20 +19,23 @@ describe('Getter Setter methods', () => {
     const Guild = sequelize.models.Guild;
     const guild = await Guild.getGuild(existingGuildId);
 
-    expect(guild).not.toBeNull();
+    // console.log(await Guild.findAll({}));
 
-    await sequelize.sync({ force: true });
+    expect(guild).not.toBeNull();
   });
 
   test('creating a guild using createGuild method', async () => {
     const newGuildId = '912834509182370012';
     const Guild = sequelize.models.Guild;
+    console.log(await Guild.findOne({where: {guildId: existingGuildId}}));
     await Guild.createGuild(newGuildId);
 
     const guild = await Guild.getGuild(newGuildId);
+
     // console.log(guild.guildId);
     expect(guild).not.toBeNull();
     expect(guild.guildId).toBe(newGuildId);
+    expect(Guild.findOne({where: {guildId: existingGuildId}})).resolves.not.toBeNull();
   });
 });
 
@@ -43,10 +45,12 @@ describe('getLeaderboard method', () => {
     const Guild = sequelize.models.Guild;
     const guild = await Guild.getGuild(existingGuildId);
 
+    // console.log(await Guild.findAll({}));
+
     expect(guild).not.toBeNull();
 
     const leaderboard = await guild.getLeaderboard();
-    console.log(leaderboard); 
+    // console.log(leaderboard); 
     expect(leaderboard).not.toBeNull();
   });
 })

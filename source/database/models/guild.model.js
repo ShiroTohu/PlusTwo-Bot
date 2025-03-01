@@ -12,7 +12,7 @@ class Guild extends Model {
 
   static async createGuild(guildId) {
     return await this.create({
-      guildId: guildId.toString()
+      guildId: guildId
     });
   }
 
