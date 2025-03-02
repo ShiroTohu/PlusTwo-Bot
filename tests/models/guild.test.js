@@ -43,14 +43,16 @@ describe('Getter Setter methods', () => {
 describe('getLeaderboard method', () => {
   test('returned objected from getLeaderboard method matches expected output', async () => {
     const Guild = sequelize.models.Guild;
+    const Score = sequelize.models.Score;
     const guild = await Guild.getGuild(existingGuildId);
 
-    // console.log(await Guild.findAll({}));
+    // console.log('guild');
+    // console.log(await Score.findAll({}));
 
     expect(guild).not.toBeNull();
 
     const leaderboard = await guild.getLeaderboard();
-    // console.log(leaderboard); 
+    console.log(leaderboard);
     expect(leaderboard).not.toBeNull();
   });
 })
