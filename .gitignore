@@ -7,3 +7,4 @@ coverage/
 .env
 testing.sqlite
 development.sqlite
+playground/
