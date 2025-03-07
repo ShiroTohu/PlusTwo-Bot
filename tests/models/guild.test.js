@@ -5,6 +5,9 @@ let sequelize;
 // this guild actually exists in the dummy data
 const existingGuildId = '827597916039016962';
 
+// I think it's generally bad practice to have one database for all tests
+// though I get errors when I try to refresh it after each test with seemingly
+// no reproducability.
 beforeAll(async () => {
   sequelize = await setupDatabase();
   await insertDummyData(sequelize);
