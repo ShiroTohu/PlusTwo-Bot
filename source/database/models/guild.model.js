@@ -1,3 +1,4 @@
+const { User } = require('discord.js');
 const { Model } = require('sequelize');
 
 // The Guild Model has some helper methods to make code throughout more readable.
@@ -17,9 +18,16 @@ class Guild extends Model {
   }
 
   async getLeaderboard() {
-    return await Guild.findAll({
-      include: Guild.sequelize.model.Score
-    });
+    // readability
+    const User = Guild.sequelize.models.User;
+    const Score = Guild.sequelize.models.Score;
+
+    return await Score.findAll({
+      where: {GuildId: this.id},
+      order: [['score', 'DESC']],
+      limit: 10,
+      include: [User]
+    })
   }
 
   async plusTwo(userId) {

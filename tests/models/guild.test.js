@@ -30,7 +30,7 @@ describe('Getter Setter methods', () => {
   test('creating a guild using createGuild method', async () => {
     const newGuildId = '912834509182370012';
     const Guild = sequelize.models.Guild;
-    console.log(await Guild.findOne({where: {id: existingGuildId}}));
+    // console.log(await Guild.findOne({where: {id: existingGuildId}}));
     await Guild.createGuild(newGuildId);
 
     const guild = await Guild.getGuild(newGuildId);
@@ -54,8 +54,9 @@ describe('getLeaderboard method', () => {
 
     expect(guild).not.toBeNull();
 
-    const leaderboard = await guild.getLeaderboard();
-    console.log(leaderboard);
-    expect(leaderboard).not.toBeNull();
+    const scores = await guild.getLeaderboard();
+    // console.log(scores);
+    expect(scores).not.toBeNull();
+    expect(scores.User).not.toBeNull();
   });
-})
+});
