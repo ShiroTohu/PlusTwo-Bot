@@ -1,27 +1,29 @@
 const { setupDatabase, insertDummyData } = require('../source/database/database.js');
 
+const existingGuildId = '827597916039016962';
+const existingUserId = '997027454665226734'
+
+let sequelize;
+let Guild;
+let Score; 
+let User;
+
+beforeAll(async () => {
+    sequelize = await setupDatabase();
+
+    Guild = sequelize.models.Guild;
+    User = sequelize.models.User;
+    Score = sequelize.models.Score;
+
+    // console.log(sequelize.models.User);
+    await insertDummyData(sequelize);
+});
+
+afterAll(async () => {
+    await sequelize.sync({force: true});
+});
+
 describe('setupDatabase and insertDummyData functions', () => {
-    const existingGuildId = '827597916039016962';
-    let sequelize;
-    let Guild;
-    let Score; 
-    let User;
-
-    beforeAll(async () => {
-        sequelize = await setupDatabase();
-
-        Guild = sequelize.models.Guild;
-        User = sequelize.models.User;
-        Score = sequelize.models.Score;
-
-        // console.log(sequelize.models.User);
-        await insertDummyData(sequelize);
-    });
-
-    afterAll(async () => {
-        await sequelize.sync({force: true});
-    });
-
     test('pass if data in database', async () => {
         await expect(sequelize.models.User.findAll()).resolves.not.toBeNull();
         await expect(sequelize.models.Guild.findAll()).resolves.not.toBeNull();

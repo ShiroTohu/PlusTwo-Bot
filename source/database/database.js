@@ -55,7 +55,7 @@ async function insertDummyData(sequelize) {
     {GuildId: '827597916039016962', UserId: '455840886956257287', score: 985},
     {GuildId: '827597916039016962', UserId: '161640664076316994', score: 0},
     {GuildId: '827597916039016962', UserId: '997027454665226734', score: 12},
-    {GuildId: '827597916039016962', UserId: '667792375797365060', score: 14},
+    {GuildId: '827597916039016962', UserId: '667792375797365060', score: 82},
   ]);
 }
 

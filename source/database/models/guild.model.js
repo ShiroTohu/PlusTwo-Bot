@@ -18,24 +18,46 @@ class Guild extends Model {
   }
 
   async getLeaderboard() {
-    // readability
-    const User = Guild.sequelize.models.User;
-    const Score = Guild.sequelize.models.Score;
-
-    return await Score.findAll({
+    return await this.sequelize.models.Score.findAll({
       where: {GuildId: this.id},
       order: [['score', 'DESC']],
       limit: 10,
-      include: [User]
+      include: [this.sequelize.models.User]
     })
   }
 
+  async getScore(userId) {
+    // the then statement at the end is so that it doesn't return
+    // {score: 12}
+    const score = await this.sequelize.models.Score.findOne({
+      attributes: ['score'],
+      where: {
+        GuildId: this.id,
+        UserId: userId
+      }
+    });
+
+    return score.score;
+  }
+
   async plusTwo(userId) {
-    // functionality here
+    return await this.sequelize.models.Score.increment('score', {
+      by: 2,
+      where: {
+        GuildId: this.id,
+        UserId: userId
+      }
+    });
   }
 
   async minusTwo(userId) {
-    // functionality here 
+    return await this.sequelize.models.Score.decrement('score', {
+      by: 2,
+      where: {
+        GuildId: this.id,
+        UserId: userId
+      }
+    });
   }
 }
 
