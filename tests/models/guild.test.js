@@ -27,15 +27,15 @@ describe('Getter Setter methods', () => {
   test('creating a guild using createGuild method', async () => {
     const newGuildId = '912834509182370012';
     const Guild = sequelize.models.Guild;
-    console.log(await Guild.findOne({where: {guildId: existingGuildId}}));
+    console.log(await Guild.findOne({where: {id: existingGuildId}}));
     await Guild.createGuild(newGuildId);
 
     const guild = await Guild.getGuild(newGuildId);
 
     // console.log(guild.guildId);
     expect(guild).not.toBeNull();
-    expect(guild.guildId).toBe(newGuildId);
-    expect(Guild.findOne({where: {guildId: existingGuildId}})).resolves.not.toBeNull();
+    expect(guild.id).toBe(newGuildId);
+    expect(Guild.findOne({where: {id: existingGuildId}})).resolves.not.toBeNull();
   });
 });
 

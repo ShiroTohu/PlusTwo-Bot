@@ -2,17 +2,17 @@ const { Model } = require('sequelize');
 
 // The Guild Model has some helper methods to make code throughout more readable.
 class Guild extends Model {
-  static async getGuild(guildId) {
+  static async getGuild(id) {
     return await this.findOne({
       where: {
-        guildId: guildId
+        id: id
       }
     });
   }
 
-  static async createGuild(guildId) {
+  static async createGuild(id) {
     return await this.create({
-      guildId: guildId
+      id: id
     });
   }
 

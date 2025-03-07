@@ -11,6 +11,7 @@ const { verifyDotEnv } = require('./source/verify-dotenv.js');
 const { setupDatabase } = require('./source/database/database.js');
 
 // logs this cool ASCII art to the terminal. Pretty cool right?
+console.clear()
 console.log(`
      ██╗███████╗██████╗ ███╗   ███╗ █████╗     ██████╗  ██████╗ ████████╗
      ██║██╔════╝██╔══██╗████╗ ████║██╔══██╗    ██╔══██╗██╔═══██╗╚══██╔══╝
@@ -22,7 +23,7 @@ console.log(`
 
 /**
 	verifies that all of the contents needed inside of .env are present. 
-  It then set's up a sequelize instance with the database config
+  	It then set's up a sequelize instance with the database config
 	specified. If none are specfied it defaults to the development config.
  */
 verifyDotEnv();
@@ -62,7 +63,8 @@ for (const folder of commandFolders) {
 	}
 }
 
-// event handler
+// event handler. Dynamically goes through the events/ folder and 
+// parses the event name and execute method into the clients on/once method
 logger.info('configuring events');
 const eventsPath = path.join(__dirname, 'source/events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));

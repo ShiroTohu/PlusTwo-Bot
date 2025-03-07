@@ -21,6 +21,8 @@ async function setupDatabase() {
 
   User.belongsToMany(Guild, {through: Score});
   Guild.belongsToMany(User, {through: Score});
+  User.hasMany(Score);
+  Guild.hasMany(Score);
 
   // This syncs the models (User, Guild, Score) with the database making sure that everything
   // such as rows and columns match up. If a model doesn't exist in the database a table will
@@ -37,21 +39,21 @@ async function insertDummyData(sequelize) {
   // console.log(sequelize);
 
   await sequelize.models.User.bulkCreate([
-    {userId: '455840886956257287', username: 'Jeremy Elbertson'},
-    {userId: '161640664076316994', username: 'Otto'},
-    {userId: '997027454665226734', username: 'BallFondler'},
-    {userId: '667792375797365060', username: 'Among Us Guy'}
+    {id: '455840886956257287', username: 'Jeremy Elbertson'},
+    {id: '161640664076316994', username: 'Otto'},
+    {id: '997027454665226734', username: 'BallFondler'},
+    {id: '667792375797365060', username: 'Among Us Guy'}
   ]);
 
   await sequelize.models.Guild.bulkCreate([
-    {guildId: '827597916039016962'}
+    {id: '827597916039016962'}
   ]);
 
   await sequelize.models.Score.bulkCreate([
-    {guildId: '827597916039016962', userId: '455840886956257287'},
-    {guildId: '827597916039016962', userId: '161640664076316994'},
-    {guildId: '827597916039016962', userId: '997027454665226734'},
-    {guildId: '827597916039016962', userId: '667792375797365060'},
+    {GuildId: '827597916039016962', UserId: '455840886956257287'},
+    {GuildId: '827597916039016962', UserId: '161640664076316994'},
+    {GuildId: '827597916039016962', UserId: '997027454665226734'},
+    {GuildId: '827597916039016962', UserId: '667792375797365060'},
   ]);
 }
 
