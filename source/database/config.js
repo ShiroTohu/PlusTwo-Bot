@@ -1,4 +1,5 @@
 // database environments, feel free to change these if needed
+const { logger } = require('./../logger')
 
 module.exports = {
   development: {
@@ -7,7 +8,7 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST,
     dialect: "sqlite",
-    logging: false,
+    logging: msg => logger.info(msg),
     storage: './development.sqlite'
   },
   test: {
@@ -25,6 +26,6 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     host: process.env.DB_TEST_HOST,
     dialect: "postgres",
-    logging: false
+    logging: msg => logger.info(msg)
   }
 };

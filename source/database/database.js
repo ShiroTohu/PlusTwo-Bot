@@ -19,8 +19,8 @@ async function setupDatabase() {
   // User.belongsToMany(Guild, { through: Score, foreignKey: 'userId' });
   // Guild.belongsToMany(User, { through: Score, foreignKey: 'guildId' });
 
-  User.hasMany(Score, {foreignKey: 'userId'});
-  Guild.hasMany(Score, {foreignKey: 'guildId'});
+  User.belongsToMany(Guild, {through: Score});
+  Guild.belongsToMany(User, {through: Score});
 
   // This syncs the models (User, Guild, Score) with the database making sure that everything
   // such as rows and columns match up. If a model doesn't exist in the database a table will

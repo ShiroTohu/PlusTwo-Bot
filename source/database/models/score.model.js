@@ -11,20 +11,6 @@ class Score extends Model { }
  */
 module.exports = (sequelize, DataTypes) => {
     return Score.init({
-        guildId: {
-            type: DataTypes.STRING,
-            references: {
-              model: 'Guilds',
-              key: 'guildId'
-            }
-        },
-        userId: {
-            type: DataTypes.STRING,
-            references: {
-              model: 'Users',
-              key: 'userId'
-            }
-        },
         score: {
             type: DataTypes.INTEGER,
             defaultValue: 0

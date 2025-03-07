@@ -40,7 +40,7 @@ class Guild extends Model {
  */
 module.exports = (sequelize, DataTypes) => {
     return Guild.init({
-        guildId: {
+        id: {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
