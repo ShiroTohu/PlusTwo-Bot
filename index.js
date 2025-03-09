@@ -27,7 +27,10 @@ console.log(`
 	specified. If none are specfied it defaults to the development config.
  */
 verifyDotEnv();
-setupDatabase();
+(async () => {
+	const sequelize = await setupDatabase();
+	await sequelize.sync();
+})();
 
 // Create a new client instance
 const client = new Client({ 
