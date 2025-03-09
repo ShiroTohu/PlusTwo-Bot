@@ -16,20 +16,13 @@ function setupDatabase() {
   const Guild = require('./models/guild.model.js')(sequelize, Sequelize.DataTypes);
   const Score = require('./models/score.model.js')(sequelize, Sequelize.DataTypes);
 
-  // User.belongsToMany(Guild, { through: Score, foreignKey: 'userId' });
-  // Guild.belongsToMany(User, { through: Score, foreignKey: 'guildId' });
-
+  // https://sequelize.org/docs/v6/advanced-association-concepts/advanced-many-to-many/#the-best-of-both-worlds-the-super-many-to-many-relationship
   User.belongsToMany(Guild, {through: Score});
   Guild.belongsToMany(User, {through: Score});
   User.hasMany(Score);
   Score.belongsTo(User);
   Guild.hasMany(Score);
   Score.belongsTo(Guild);
-
-  // // This syncs the models (User, Guild, Score) with the database making sure that everything
-  // // such as rows and columns match up. If a model doesn't exist in the database a table will
-  // // be created for it.
-  // await sequelize.sync();
 
   return sequelize;
 };

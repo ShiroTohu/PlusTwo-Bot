@@ -5,10 +5,12 @@ const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require(
 require('@dotenvx/dotenvx').config();
 require('./source/parser.js');
 
+// some imports require environment variables to work.
+require('./source/verify-dotenv.js').verify();
+
 // source code imports
 const { logger } = require('./source/logger');
-const { verifyDotEnv } = require('./source/verify-dotenv.js');
-const { setupDatabase } = require('./source/database/database.js');
+require('./source/database/database.js'); // initalizes database
 
 // logs this cool ASCII art to the terminal. Pretty cool right?
 console.clear()
@@ -20,17 +22,6 @@ console.log(`
 ╚█████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║  ██║    ██████╔╝╚██████╔╝   ██║   
  ╚════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   
 `);
-
-/**
-	verifies that all of the contents needed inside of .env are present. 
-  	It then set's up a sequelize instance with the database config
-	specified. If none are specfied it defaults to the development config.
- */
-verifyDotEnv();
-(async () => {
-	const sequelize = await setupDatabase();
-	await sequelize.sync();
-})();
 
 // Create a new client instance
 const client = new Client({ 

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, bold } = require('discord.js');
-const { Scores, Guilds, Users } = require('../../database/database.js');
+const { Score, Guild, User } = require('../../database/database.js');
 const { logger } = require('../../logger.js');
 
 // TODO: make users into scores
@@ -7,13 +7,8 @@ const { logger } = require('../../logger.js');
 async function getLeaderboard(interaction) {
     logger.info("/leaderboard command used");
 
-    const guild = await Guilds.findOne({
-        where : {guild_id: interaction.guild.id}
-    })
-
-    if (!guild) {
-        logger.warn('no guild found');
-    }
+    const guild = await Guild.get(guildId);
+    logger.info(guild);
 
     const leaderboardEmbed = new EmbedBuilder()
         .setColor(0x0099FF)
