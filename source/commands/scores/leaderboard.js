@@ -2,8 +2,6 @@ const { SlashCommandBuilder, EmbedBuilder, bold } = require('discord.js');
 const { Score, Guild, User } = require('../../database/database.js');
 const { logger } = require('../../logger.js');
 
-// TODO: make users into scores
-
 async function getLeaderboard(interaction) {
     logger.info("/leaderboard command used");
 

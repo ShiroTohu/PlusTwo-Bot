@@ -23,6 +23,11 @@ describe('Getter Setter methods', () => {
     expect(guild).not.toBeNull();
   });
 
+  test('getting guild that does not exist', async () => {
+    expect.assertions(1);
+    await expect(Guild.getGuild('123549875487559172')).rejects.toThrow('Guild not found');
+  })
+
   test('creating a guild using createGuild method', async () => {
     const newGuildId = '912834509182370012';
     await Guild.createGuild(newGuildId);
