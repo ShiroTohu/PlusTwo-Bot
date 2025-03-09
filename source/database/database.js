@@ -26,10 +26,10 @@ async function setupDatabase() {
   Guild.hasMany(Score);
   Score.belongsTo(Guild);
 
-  // This syncs the models (User, Guild, Score) with the database making sure that everything
-  // such as rows and columns match up. If a model doesn't exist in the database a table will
-  // be created for it.
-  await sequelize.sync();
+  // // This syncs the models (User, Guild, Score) with the database making sure that everything
+  // // such as rows and columns match up. If a model doesn't exist in the database a table will
+  // // be created for it.
+  // await sequelize.sync();
 
   return sequelize;
 };

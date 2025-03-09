@@ -4,23 +4,12 @@ const existingGuildId = '827597916039016962';
 const existingUserId = '997027454665226734'
 
 let sequelize;
-let Guild;
-let Score; 
-let User;
 
 beforeAll(async () => {
     sequelize = await setupDatabase();
-
-    Guild = sequelize.models.Guild;
-    User = sequelize.models.User;
-    Score = sequelize.models.Score;
-
-    // console.log(sequelize.models.User);
-    await insertDummyData(sequelize);
-});
-
-afterAll(async () => {
     await sequelize.sync({force: true});
+
+    await insertDummyData(sequelize);
 });
 
 describe('setupDatabase and insertDummyData functions', () => {
@@ -33,6 +22,9 @@ describe('setupDatabase and insertDummyData functions', () => {
     // https://sequelize.org/docs/v6/core-concepts/assocs/#basics-of-queries-involving-associations
     // makes sure that related tables can access each other.
     test('pass if eager loading is working', async () => {
+        const Guild = sequelize.models.Guild;
+        const User = sequelize.models.User;
+
         // console.log(await Guild.findOne({include: User}));
         const guild = await Guild.findOne({include: User});
         const user = await User.findOne({include: Guild});
@@ -41,6 +33,9 @@ describe('setupDatabase and insertDummyData functions', () => {
     });
 
     test('get user score', async () => {
+        const User = sequelize.models.User;
+        const Score = sequelize.models.Score;
+
         const user = await User.findOne({include: Score});
         console.log(user.Scores[0].score);
     })

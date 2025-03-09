@@ -4,23 +4,13 @@ const existingGuildId = '827597916039016962';
 const existingUserId = '997027454665226734'
 
 let sequelize;
-let Guild;
-let Score; 
-let User;
 
 beforeAll(async () => {
     sequelize = await setupDatabase();
-
-    Guild = sequelize.models.Guild;
-    User = sequelize.models.User;
-    Score = sequelize.models.Score;
+    await sequelize.sync({force: true});
 
     // console.log(sequelize.models.User);
     await insertDummyData(sequelize);
-});
-
-afterAll(async () => {
-    await sequelize.sync({force: true});
 });
 
 describe('Getter Setter methods', () => {
@@ -69,21 +59,25 @@ describe('getLeaderboard method', () => {
 
 describe('Guild score functionality', () => {
   test('getScore method', async () => {
+    const Guild = sequelize.models.Guild;
+
     const guild = await Guild.getGuild(existingGuildId);
-    expect(guild.getScore(existingUserId)).resolves.toEqual({"score": 12});
+    expect(guild.getScore(existingUserId)).resolves.toEqual(12);
   })
 
   test('minus two', async () => {
+    const Guild = sequelize.models.Guild;
     const guild = await Guild.getGuild(existingGuildId);
     
-    // const answer = await guild.minusTwo(existingUserId);
-    expect(guild.getScore(existingUserId)).resolves.toEqual({"score": 10});
+    const answer = await guild.minusTwo(existingUserId);
+    expect(guild.getScore(existingUserId)).resolves.toEqual(10);
   });
 
   test('plus two', async () => {
+    const Guild = sequelize.models.Guild;
     const guild = await Guild.getGuild(existingGuildId);
     
-    // const answer = await guild.plusTwo(existingUserId);
-    expect(guild.getScore(existingUserId)).resolves.toEqual({"score": 10});
+    await guild.plusTwo(existingUserId);
+    expect(guild.getScore(existingUserId)).resolves.toEqual(12);
   });
 });
