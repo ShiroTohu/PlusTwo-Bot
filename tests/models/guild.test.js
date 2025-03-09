@@ -7,7 +7,7 @@ const existingUserId = '997027454665226734'
 let sequelize;
 
 beforeAll(async () => {
-    sequelize = await setupDatabase();
+    sequelize = setupDatabase();
     await sequelize.sync({force: true});
 
     // console.log(sequelize.models.User);
@@ -74,6 +74,7 @@ describe('Guild score functionality', () => {
     expect(guild.getScore(existingUserId)).resolves.toEqual(10);
   });
 
+  // This test relies on minus two. This isn't really ideal.
   test('plus two', async () => {
     const Guild = sequelize.models.Guild;
     const guild = await Guild.getGuild(existingGuildId);

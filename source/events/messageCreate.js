@@ -6,10 +6,9 @@ module.exports = {
     name: Events.MessageCreate,
     async execute(message) {
         const REPLY = 19;
-        logger.info('message received');
 
         if (message.type == REPLY) {
-            const reference = await message.fetchReference()
+            const reference = await message.fetchReference();
             const referenceAuthor = reference.author;
 
             if (referenceAuthor == message.author) {

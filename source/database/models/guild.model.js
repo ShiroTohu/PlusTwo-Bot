@@ -1,4 +1,3 @@
-const { User } = require('discord.js');
 const { Model } = require('sequelize');
 
 // The Guild Model has some helper methods to make code throughout more readable.
@@ -17,6 +16,7 @@ class Guild extends Model {
     });
   }
 
+  // gets the guilds leaderboard
   async getLeaderboard() {
     return await this.sequelize.models.Score.findAll({
       where: {GuildId: this.id},
@@ -26,6 +26,7 @@ class Guild extends Model {
     })
   }
 
+  // retrieve user score
   async getScore(userId) {
     // the then statement at the end is so that it doesn't return
     // {score: 12}
@@ -40,6 +41,7 @@ class Guild extends Model {
     return score.score;
   }
 
+  // adds 2 from the users score
   async plusTwo(userId) {
     return await this.sequelize.models.Score.increment('score', {
       by: 2,
@@ -50,6 +52,7 @@ class Guild extends Model {
     });
   }
 
+  // subtracts 2 from the users score
   async minusTwo(userId) {
     return await this.sequelize.models.Score.decrement('score', {
       by: 2,

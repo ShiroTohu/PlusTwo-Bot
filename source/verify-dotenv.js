@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const { logger } = require('./logger.js');
 
-function verifyDotEnv() {
+// verifies that the required variables are in the .venv file
+function verify() {
   if (!fs.existsSync('.env')) {
     logger.fatal('.env file NOT found');
     process.exit();
@@ -47,4 +48,4 @@ function checkEnv(variables) {
   }
 }
 
-module.exports = { verifyDotEnv };
+module.exports = { verify };
