@@ -5,12 +5,9 @@ const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require(
 require('@dotenvx/dotenvx').config();
 require('./source/parser.js');
 
-// some imports require environment variables to work.
-require('./source/verify-dotenv.js').verify();
-
 // source code imports
+require('./source/verify-dotenv.js').verify();
 const { logger } = require('./source/logger');
-require('./source/database/database.js'); // initalizes database
 
 // logs this cool ASCII art to the terminal. Pretty cool right?
 console.clear()
@@ -74,4 +71,9 @@ for (const file of eventFiles) {
 }
 
 // login to discord
-client.login(process.env.DISCORD_TOKEN);
+try {
+	client.login(process.env.DISCORD_TOKEN);
+} catch(err) {
+	logger.fatal(err);
+}
+
