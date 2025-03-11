@@ -1,6 +1,7 @@
 const {Events, MessageFlags } = require('discord.js');
 const { logger } = require('../logger')
 
+// checks interaction and runs the command.
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {

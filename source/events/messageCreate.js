@@ -1,7 +1,8 @@
 const { Events } = require('discord.js');
 const { Guild } = require('../database/database');
 const { logger } = require('../logger');
-
+// When a message is created it checks whether the type of the message is a reply.
+// It also checks whether the content is +2/-2 and alaters the score accordingly.
 module.exports = {
     name: Events.MessageCreate,
     async execute(message) {
