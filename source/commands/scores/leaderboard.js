@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, bold } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { Guild } = require('../../database/database.js');
 const { logger } = require('../../logger.js');
 
