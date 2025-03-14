@@ -17,7 +17,7 @@ async function getLeaderboard(interaction) {
 
     const guild = await Guild.getGuild(interaction.guildId);
     const scores = await guild.getLeaderboard(); // TODO: should probably rename this to get scores
-    logger.info(scores);
+    const topUser = await interaction.client.users.fetch(scores[0].User.id);
 
     if (!(scores.length == 0)) {
         let leaderboard = '';
@@ -30,6 +30,7 @@ async function getLeaderboard(interaction) {
         .setColor(0x0099FF)
         .setDescription(`The +2 leaderboard for ${interaction.guild.name}!`)
         .setAuthor({ name: `${interaction.guild.name} - Leaderboard`, iconURL: interaction.guild.iconURL() })
+        .setThumbnail(topUser.displayAvatarURL())
         .addFields(
             {name: '\u200b', value: leaderboard}
         );
@@ -39,35 +40,4 @@ async function getLeaderboard(interaction) {
         .setDescription(`No leaderboard found for ${interaction.guild.name}. +2 someone to start!`)
         .setAuthor({ name: `${interaction.guild.name} - Leaderboard`, iconURL: interaction.guild.iconURL() });
     }
-
-    // if (Guild) {
-    //     logger.info(Guild.findAll());
-    //     const guild = await Guild.getGuild(interaction.guildId);
-    //     logger.info(guild);
-
-    //     const leaderboard = await guild.getLeaderboard();
-    //     logger.info(guild);
-    //     let leaderboardEmbed;
-    // }
-
-    
-
-    // const leaderboardEmbed = new EmbedBuilder()
-    // .setColor(0x0099FF)
-    // .setDescription(`No leaderboard found for ${interaction.guild.name}. +2 someone to start!`)
-    // .setAuthor({ name: `${interaction.guild.name} - Leaderboard`, iconURL: interaction.guild.iconURL() });
-    // .setThumbnail(topUser.displayAvatarURL()) 
-
-    // else {
-    //     leaderboardEmbed = new EmbedBuilder()
-    //     .setColor(0x0099FF)
-    //     .setDescription(`The +2 leaderboard for ${interaction.guild.name}!`)
-    //     .setAuthor({ name: `${interaction.guild.name} - Leaderboard`, iconURL: interaction.guild.iconURL() })
-    //     // .setThumbnail(topUser.displayAvatarURL()) 
-    //     .addFields(
-    //         {name: '\u200b', value: leaderboard}
-    //     );
-    // }
-
-    // return leaderboardEmbed
 }
