@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { alterScore } = require('../../database/database.js');
+const { Guild, User, Score } = require('../../database/database');
+const { logger } = require('../../logger')
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -10,13 +11,18 @@ module.exports = {
 			.setRequired(true)
 		),
 	async execute(interaction) {
-		const user = interaction.options.getUser('target');
-		if (!(user == interaction.user)) {
-			interaction.reply(`<:plus2:1325696309671231561> ${user.username}`);
-			await alterScore(user, 2);
+		const target = interaction.options.getUser('target');
+		
+		const guild = await Guild.findOrCreate({where: {id: interaction.guildId}});
+		await User.findOrCreate({where: {id: target.id, username: target.username}});
+		await Score.findOrCreate({where: {UserId: target.id, GuildId: interaction.guildId}});
+
+		if (!(target == interaction.user)) {
+			guild[0].plusTwo(target.id);
+			interaction.reply(`<:plus2:1325696309671231561> ${target.username}`);
 		} else {
-			interaction.reply(`<:minus2:1325696373903065128> ${interaction.user.username}`);
-			await alterScore(user, -2);
+			guild[0].minusTwo(target.id);
+			interaction.reply(`<:minus2:1325696373903065128> ${target.username}`);
 		}
 	},
 };

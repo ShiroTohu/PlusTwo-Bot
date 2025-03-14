@@ -10,8 +10,13 @@ module.exports = {
 			.setRequired(true)
 		),
 	async execute(interaction) {
-		const user = interaction.options.getUser('target');
-		await alterScore(user, -2);
-		interaction.reply(`<:minus2:1325696373903065128> ${user.username}`)
+		const target = interaction.options.getUser('target');
+		
+		const guild = await Guild.findOrCreate({where: {id: interaction.guildId}});
+		await User.findOrCreate({where: {id: target.id, username: target.username}});
+		await Score.findOrCreate({where: {UserId: target.id, GuildId: interaction.guildId}});
+
+		guild[0].minusTwo(target.id);
+		interaction.reply(`<:minus2:1325696373903065128> ${user.username}`);
 	},
 };

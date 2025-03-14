@@ -44,23 +44,18 @@ class Guild extends Model {
    * @param {*} user discord user object
    * @returns {model}}
    */
-  async plusTwo(user) {
-    const User = this.sequelize.models.User;
-
-    await User.findOrCreate({where: {id: user.id}});
-    await this.findOrCreate({where: {id: this.id}});
-
+  async plusTwo(userId) {
     return await this.sequelize.models.Score.increment('score', {
       by: 2,
       where: {
         GuildId: this.id,
-        UserId: user.id
+        UserId: userId
       }
     });
   }
 
   // subtracts 2 from the users score. takes in a user object
-  async minusTwo(user) {
+  async minusTwo(userId) {
     return await this.sequelize.models.Score.decrement('score', {
       by: 2,
       where: {
