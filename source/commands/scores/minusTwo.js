@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { alterScore } = '../../database/database.js';
+const { Guild, User, Score } = require('../../database/database');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -17,6 +17,6 @@ module.exports = {
 		await Score.findOrCreate({where: {UserId: target.id, GuildId: interaction.guildId}});
 
 		guild[0].minusTwo(target.id);
-		interaction.reply(`<:minus2:1325696373903065128> ${user.username}`);
+		interaction.reply(`<:minus2:1325696373903065128> ${target.username}`);
 	},
 };
