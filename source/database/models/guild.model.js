@@ -22,7 +22,7 @@ class Guild extends Model {
       order: [['score', 'DESC']],
       limit: 10,
       include: [this.sequelize.models.User]
-    })
+    });
   }
 
   // retrieve user score
