@@ -1,6 +1,5 @@
 const { Model } = require('sequelize');
 
-// The Guild Model has some helper methods to make code throughout more readable.
 class Guild extends Model {
   static async getGuild(id) {
     return await this.findOne({
@@ -28,8 +27,6 @@ class Guild extends Model {
 
   // retrieve user score
   async getScore(userId) {
-    // the then statement at the end is so that it doesn't return
-    // {score: 12}
     const score = await this.sequelize.models.Score.findOne({
       attributes: ['score'],
       where: {
@@ -41,19 +38,29 @@ class Guild extends Model {
     return score.score;
   }
 
-  // adds 2 from the users score
-  async plusTwo(userId) {
+  /**
+   * Adds 2 to the users score within the specified guild.
+   * 
+   * @param {*} user discord user object
+   * @returns {model}}
+   */
+  async plusTwo(user) {
+    const User = this.sequelize.models.User;
+
+    await User.findOrCreate({where: {id: user.id}});
+    await this.findOrCreate({where: {id: this.id}});
+
     return await this.sequelize.models.Score.increment('score', {
       by: 2,
       where: {
         GuildId: this.id,
-        UserId: userId
+        UserId: user.id
       }
     });
   }
 
-  // subtracts 2 from the users score
-  async minusTwo(userId) {
+  // subtracts 2 from the users score. takes in a user object
+  async minusTwo(user) {
     return await this.sequelize.models.Score.decrement('score', {
       by: 2,
       where: {
@@ -66,7 +73,10 @@ class Guild extends Model {
 
 /**
  * The guild, stores the settings of the guild which can be changed with ModOptions.
+ *  
+ * A daily value of zero means that they can +2 to their hearts content with no restrictions.
  * 
+ * COLUMNS: (GuildId, dailyLimit)
  * @param {Sequelize} sequelize 
  * @param {DataType} DataTypes 
  * @returns a model
