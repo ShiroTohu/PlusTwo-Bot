@@ -1,4 +1,4 @@
-const setupDatabase = require('./../../source/database/setupDatabase.js');
+const setupDatabase = require('../../source/database/setupDatabase.js');
 const insertDummyData = require('./../insertDummyData.js');
 
 const existingGuildId = '827597916039016962';

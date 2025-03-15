@@ -11,3 +11,4 @@ Non-essential environment variables (used for production)
 - `DB_PASSWORD`
 - `DB_HOST`
 - `DB_TEST_HOST`
+- `CLIENT_ID`
