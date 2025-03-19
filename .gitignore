@@ -8,3 +8,4 @@ coverage/
 testing.sqlite
 development.sqlite
 playground/
+.venv
