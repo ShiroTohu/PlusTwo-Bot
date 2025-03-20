@@ -1,6 +1,8 @@
 # +2 Bot
 Inspired by Jerma985.
 
+![example gif](./docs/example.gif)
+
 ## Environment variables in .env file
 The required environment variables
 - `DISCORD_TOKEN`

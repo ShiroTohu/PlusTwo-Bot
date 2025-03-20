@@ -1,4 +1,5 @@
 # Setting up Environment Variables
+Create a file in the root directory named .env and assign their respective values. If the variable is not required than no value is necessary.
 ```
 // required 
 DISCORD_TOKEN = 
