@@ -19,6 +19,7 @@ console.log(`
 ╚█████╔╝███████╗██║  ██║██║ ╚═╝ ██║██║  ██║    ██████╔╝╚██████╔╝   ██║   
  ╚════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   
 `);
+console.log(`server invite link: https://discord.com/oauth2/authorize?client_id=${process.env.CLIENT_ID}`)
 
 // Create a new client instance
 const client = new Client({ 
