@@ -3,13 +3,14 @@ const { logger } = require('./logger.js');
 
 // verifies that the required variables are in the .venv file
 function verify() {
-  if (!fs.existsSync('.env')) {
+  if (fs.existsSync('.env')) {
+    require('@dotenvx/dotenvx').config(); // despite it being
+    logger.info('.env file found');
+  } else {
     logger.fatal('.env file NOT found');
-    process.exit();
-  }
-  
-  logger.info('.env file found');
-
+    process.exit(); 
+  } 
+ 
   // variables that are required in order for the program to run
   const requiredVariables = [
     "DISCORD_TOKEN",

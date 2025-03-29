@@ -2,7 +2,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
-require('@dotenvx/dotenvx').config();
 require('./source/parser.js');
 
 // source code imports
