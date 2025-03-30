@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { Score } = require('../../database/database');
 const { logger } = require('../../logger')
 
@@ -12,6 +12,11 @@ module.exports = {
             where: {UserId: interaction.user.id, GuildId: interaction.guildId}
         });
 
-        interaction.reply(score.score.toString());
+		const leaderboardEmbed = new EmbedBuilder()
+			.setColor(0x0099FF)
+			.setAuthor({ name: `${interaction.user.username}'s score: ${score.score.toString()}`, iconURL: interaction.user.displayAvatarURL() })
+			// .setThumbnail(interaction.user.displayAvatarURL())
+
+        interaction.reply({ embeds: [leaderboardEmbed] });
 	},
 };
