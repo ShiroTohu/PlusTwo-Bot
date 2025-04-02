@@ -1,12 +1,14 @@
 // Require the necessary discord.js classes
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
+const { Client, Collection, GatewayIntentBits } = require('discord.js');
 require('./source/parser.js');
 
 // source code imports
 require('./source/verify-dotenv.js').verify();
-const { logger } = require('./source/logger');
+const { logger } = require('./source/logger.js');
+
+const process = require('node:process')
 
 // logs this cool ASCII art to the terminal. Pretty cool right?
 console.clear()

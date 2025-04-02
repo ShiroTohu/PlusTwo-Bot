@@ -1,5 +1,6 @@
 // responsible for initalizing the database
 const Sequelize = require('sequelize');
+const process = require('node:process');
 const env = process.env.NODE_ENV || 'development';
 const { logger } = require('../logger.js');
 const config = require('./config.js')[env];

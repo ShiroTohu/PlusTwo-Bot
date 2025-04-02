@@ -1,6 +1,6 @@
 const { Events } = require('discord.js');
-const { Guild, User, Score } = require('../database/database');
-const { logger } = require('../logger');
+const { Guild, User, Score } = require('../database/database.js');
+// const { logger } = require('../logger.js');
 
 // When a message is created it checks whether the type of the message is a reply.
 // It also checks whether the content is +2/-2 and alaters the score accordingly.

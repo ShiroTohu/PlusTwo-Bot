@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { Guild, User, Score } = require('../../database/database');
-const { logger } = require('../../logger')
+const { Guild, User, Score } = require('../../database/database.js');
+// const { logger } = require('../../logger.js')
 
 module.exports = {
 	data: new SlashCommandBuilder()

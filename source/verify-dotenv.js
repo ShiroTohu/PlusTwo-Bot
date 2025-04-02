@@ -1,6 +1,8 @@
 const fs = require('node:fs');
 const { logger } = require('./logger.js');
 
+const process = require('node:process');
+
 // verifies that the required variables are in the .venv file
 function verify() {
   if (fs.existsSync('.env')) {
@@ -40,12 +42,11 @@ function verify() {
 // checks if a environment variable exists given a list.
 function checkEnv(variables) {
   for (const index in variables) {
-    variable = variables[index]; 
-    if (variable in process.env) {
-    } else {
+    const variable = variables[index]; 
+    if (!(variable in process.env)) {
       logger.fatal(`${variable} NOT found in process.env. Check that you have set the ${variable} variable in your .env file`);
-      process.exit();
-    }
+      exit();
+    } 
   }
 }
 
