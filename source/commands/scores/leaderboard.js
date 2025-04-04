@@ -5,7 +5,7 @@ const { logger } = require('../../logger.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('leaderboard')
-		.setDescription('get the score a user or a leaderboard of +2\'s'),
+		.setDescription('Get the server +2 leaderboard.'),
 	async execute(interaction) {
         const leaderboardEmbed = await getLeaderboard(interaction);
         interaction.reply({ embeds: [leaderboardEmbed] });

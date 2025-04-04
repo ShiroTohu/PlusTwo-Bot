@@ -5,7 +5,7 @@ const { Score } = require('../../database/database.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('score')
-		.setDescription('Get how many plus two\'s you have'),
+		.setDescription('Display your score.'),
 	async execute(interaction) {
 		const score = await Score.findOne({
             attributes: ['score'],
