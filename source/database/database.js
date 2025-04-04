@@ -1,5 +1,6 @@
 const { logger } = require('../logger.js');
 const setupDatabase = require('./setupDatabase.js');
+const process = require('node:process');
 
 const sequelize = setupDatabase();
 

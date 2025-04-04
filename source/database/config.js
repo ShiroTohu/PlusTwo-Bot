@@ -1,7 +1,7 @@
 // database environments, feel free to change these if needed
 const { logger } = require('./../logger')
 
-const process = require('node:process')
+const process = require('node:process');
 
 module.exports = {
   development: {
