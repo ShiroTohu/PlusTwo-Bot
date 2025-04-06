@@ -1,16 +1,27 @@
 site_name: +2 Bot
 site_url: https://jerma.shirotohu.dev
+repo_url: https://github.com/ShiroTohu/PlusTwo-Bot
+repo_name: ShiroTohu/PlusTwo-Bot
+edit_uri: edit/main/docs/docs
+
+copyright: Copyright &copy; 2025 - ShiroTohu
 theme:
+  icon:
+    repo: fontawesome/brands/github-alt  
+  features:
+    - content.action.edit
   name: material
   palette:
     # Palette toggle for light mode
     - scheme: default
+      primary: black
       toggle:
         icon: material/brightness-7 
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - scheme: slate
+      primary: black
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
