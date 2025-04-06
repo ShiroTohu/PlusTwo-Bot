@@ -9,3 +9,4 @@ testing.sqlite
 development.sqlite
 playground/
 .venv
+logs/
