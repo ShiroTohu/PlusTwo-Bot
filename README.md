@@ -1,5 +1,5 @@
 # +2 Bot
-Inspired by Jerma985.
+Inspired by [Jerma985](https://www.twitch.tv/jerma985).
 
 ## Overview
 The +2 Bot is a discord bot that tracks the amount of +2's and -2's amongst users.
