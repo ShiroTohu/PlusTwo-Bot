@@ -18,13 +18,17 @@ This bot is supported by all major operating systems
 ## Environment variables in .env file
 The required environment variables
 
-- `DISCORD_TOKEN`
+```
+DISCORD_TOKEN =
+```
 
 Non-essential environment variables (used for production)
-
-- `DB_NAME`
-- `DB_USER`
-- `DB_PASSWORD`
-- `DB_HOST`
-- `DB_TEST_HOST`
-- `CLIENT_ID`
+```
+// not required
+DB_NAME = 
+DB_USER = 
+DB_PASSWORD = 
+DB_HOST = 
+DB_TEST_HOST = 
+CLIENT_ID = 
+```
