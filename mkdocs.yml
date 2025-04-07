@@ -5,11 +5,17 @@ repo_name: ShiroTohu/PlusTwo-Bot
 edit_uri: edit/main/docs
 
 copyright: Copyright &copy; 2025 - ShiroTohu
+
+markdown_extensions: 
+  - attr_list
+  - md_in_html
+
 theme:
   icon:
     repo: fontawesome/brands/github-alt  
   features:
     - content.action.edit
+    - navigation.sections
   name: material
   palette:
     # Palette toggle for light mode
