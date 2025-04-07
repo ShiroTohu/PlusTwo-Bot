@@ -20,6 +20,7 @@ The required environment variables
 
 ```
 DISCORD_TOKEN =
+CLIENT_ID = 
 ```
 
 Non-essential environment variables (used for production)
