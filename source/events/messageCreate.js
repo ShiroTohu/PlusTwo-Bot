@@ -14,8 +14,8 @@ module.exports = {
             const referenceAuthor = reference.author;
             
             const guild = await Guild.findOrCreate({where: {id: message.guildId}});
-		    await User.findOrCreate({where: {id: referenceAuthor.id, username: referenceAuthor.username}});
-		    await Score.findOrCreate({where: {UserId: referenceAuthor.id, GuildId: message.guildId}});
+    		    await User.findOrCreate({where: {id: referenceAuthor.id, username: referenceAuthor.username}});
+    		    await Score.findOrCreate({where: {UserId: referenceAuthor.id, GuildId: message.guildId}});
 
             if (referenceAuthor == message.author) {
                 await guild[0].minusTwo(referenceAuthor.id);

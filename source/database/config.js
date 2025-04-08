@@ -4,11 +4,7 @@ const { logger } = require('./../logger')
 const process = require('node:process');
 
 module.exports = {
-  development: {
-    database: process.env.DB_NAME,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    host: process.env.DB_HOST,
+  development: { 
     dialect: "sqlite",
     logging: msg => logger.info(msg),
     storage: './development.sqlite'

@@ -7,6 +7,7 @@ require('./source/parser.js');
 // source code imports
 require('./source/verify-dotenv.js').verify();
 const { logger } = require('./source/logger.js');
+require('./source/database/database.js');
 
 const process = require('node:process')
 

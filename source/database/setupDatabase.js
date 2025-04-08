@@ -14,6 +14,7 @@ function setupDatabase() {
   );
 
   // module is ran like a function
+  logger.info('creating models')
   const User = require('./models/user.model.js')(sequelize, Sequelize.DataTypes);
   const Guild = require('./models/guild.model.js')(sequelize, Sequelize.DataTypes);
   const Score = require('./models/score.model.js')(sequelize, Sequelize.DataTypes);
