@@ -1,17 +1,7 @@
-const setupDatabase = require('../source/database/setupDatabase.js');
-const insertDummyData = require('./insertDummyData.js');
+const sequelize = require('./testDatabase.js');
 
 const existingGuildId = '827597916039016962';
 const existingUserId = '997027454665226734';
-
-let sequelize;
-
-beforeAll(async () => {
-    sequelize = setupDatabase();
-    await sequelize.sync({force: true});
-
-    await insertDummyData(sequelize);
-});
 
 describe('setupDatabase and insertDummyData functions', () => {
     // make sure that something didn't go wrong when inserting data.
