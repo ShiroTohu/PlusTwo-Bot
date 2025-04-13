@@ -26,5 +26,4 @@ test('test database in general', async () => {
 
     await sequelize.sync();
     await User.create({ firstName: 'Jane', lastName: 'Doe' });
-    await sequelize.sync();
 });
