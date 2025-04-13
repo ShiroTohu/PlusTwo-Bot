@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 // tests if it's a Sequelize issue or a testing issue. If this test doesn't pass it is 
-// most likely a Sequelize issue.
+// most likely a Sequelize issue (but that probably will never happen).
 test('test database in general', async () => {
     const sequelize = new Sequelize('sqlite::memory:');
     
@@ -26,4 +26,5 @@ test('test database in general', async () => {
 
     await sequelize.sync();
     await User.create({ firstName: 'Jane', lastName: 'Doe' });
+    await sequelize.sync();
 });

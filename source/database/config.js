@@ -1,5 +1,5 @@
 // database environments, feel free to change these if needed
-const { logger } = require('./../logger')
+const { logger } = require('./../logger.js');
 
 const process = require('node:process');
 
