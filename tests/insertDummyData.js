@@ -1,6 +1,4 @@
-/**
- * inserts dummy data into the testing database
- */
+// inserts dummy data into a specified database
 async function insertDummyData(sequelize) {
     // console.log(sequelize);
   
