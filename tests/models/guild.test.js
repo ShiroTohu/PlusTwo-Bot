@@ -1,7 +1,18 @@
+const Sequelize = require('sequelize');
 const sequelize = require('../testDatabase.js');
 
 const existingGuildId = '827597916039016962';
 const existingUserId = '997027454665226734';
+
+test('pass if guild model is able to be inserted into database', () => {
+    // want to use a database that isn't in physical memory. We just want to check that it can get in.
+    const sequelize = new Sequelize('sqlite::memory:');
+
+    const Guild = require('../../source/database/models/guild.model.js')(sequelize, Sequelize.DataTypes);
+    console.log(sequelize.models.Guild); 
+    expect(Guild).not.toBeNull();
+    expect(sequelize.models.Guild).not.toBeNull();
+});
 
 describe('Getter Setter methods', () => {
   test('retrieving guild using getGuild method', async () => {
