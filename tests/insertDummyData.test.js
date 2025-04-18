@@ -1,12 +1,10 @@
-const Sequelize = require('sequelize'); 
-
 const setupDatabase = require('../source/database/setupDatabase.js');
 const insertDummyData = require('./helpers/insertDummyData.js');
 
-test('pass if setupDatabase works', async () => {
-    const sequelize = new Sequelize('sqlite::memory:'); 
-    setupDatabase(sequelize);
-
+test('pass if insertDummyData works', async () => {
+    const sequelize = setupDatabase();
+    await sequelize.sync();
     await insertDummyData(sequelize);
-    console.log(sequelize.models);
+
+    await expect(sequelize.models.Score.findAll()).resolves.toBeTruthy();
 });

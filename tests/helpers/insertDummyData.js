@@ -5,7 +5,6 @@ async function insertDummyData(sequelize) {
         return; 
     }
 
-    console.log(sequelize.models.Users);
     try {
         await sequelize.models.User.bulkCreate([
           {id: '455840886956257287', username: 'Jeremy Elbertson'},
