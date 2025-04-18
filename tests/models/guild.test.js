@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../testDatabase.js');
+const sequelize = require('../helpers/testDatabase.js');
 
 const existingGuildId = '827597916039016962';
 const existingUserId = '997027454665226734';

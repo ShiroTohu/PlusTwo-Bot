@@ -14,6 +14,8 @@ async function setupTestDatabase() {
   return sequelize;
 }
 
-const sequelize = setupTestDatabase();
+(async () => {
+  const sequelize = await setupTestDatabase();
+  module.exports = sequelize;
+})
 
-module.exports = sequelize;
