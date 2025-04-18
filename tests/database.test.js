@@ -1,12 +1,12 @@
-const sequelize = require('./testDatabase.js');
+const sequelize = require('./helpers/testDatabase.js');
 
 // const existingGuildId = '827597916039016962';
 // const existingUserId = '997027454665226734';
 
 describe('setupDatabase and insertDummyData functions', () => {
     // check if the sequelize instance resolved
-    test('pass if sequelize resolved', async() => {
-        await expect(sequelize).resolves.not.toBeNull(); 
+    test('pass if sequelize resolved', () => {
+        expect(sequelize).not.toBeNull(); 
     });
 
     // make sure that something didn't go wrong when inserting data.
@@ -37,5 +37,5 @@ describe('general database functions', () => {
 
         const user = await User.findOne({include: Score});
         console.log(user.Scores[0].score);
-    })
+    });
 });

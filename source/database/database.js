@@ -17,7 +17,7 @@ const Score = sequelize.models.Score;
 
 (async () => {
   const scores = await Score.findAll({});
-  if (!scores.length) logger.warn('database is empty (not a problem if you expect the database to be empty)');
+  if (!scores.length) logger.warn('database is empty');
 })();
 
 module.exports = { User, Guild, Score }

@@ -1,5 +1,5 @@
 const insertDummyData = require('./insertDummyData.js');
-const setupDatabase = require('../source/database/setupDatabase.js'); 
+const setupDatabase = require('../../source/database/setupDatabase.js'); 
 
 // runs the setup then returns the sequelize object to be used in tests.
 async function setupTestDatabase() {

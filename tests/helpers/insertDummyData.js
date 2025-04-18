@@ -1,5 +1,10 @@
 // inserts dummy data into a specified database
 async function insertDummyData(sequelize) {
+    if (!sequelize) {
+        console.log('seqeulize instance does not exist');
+        return; 
+    }
+
     console.log(sequelize.models.Users);
     try {
         await sequelize.models.User.bulkCreate([

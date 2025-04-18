@@ -21,7 +21,7 @@ describe('Getter Setter methods', () => {
   });
 
   test('getting guild that does not exist', async () => {
-    expect(Guild.getGuild('123549875487559172')).resolves.toBeNull();
+    await expect(Guild.getGuild('123549875487559172')).resolves.toBeNull();
   });
 
   test('creating a guild using createGuild method', async () => {
