@@ -1,19 +1,29 @@
-const sequelize = require('./helpers/testDatabase.js');
+const setupTestDatabase = require('./helpers/testDatabase.js');
 
 // const existingGuildId = '827597916039016962';
 // const existingUserId = '997027454665226734';
 
+let sequelize;
+beforeAll(async () => {
+    sequelize = await setupTestDatabase(); 
+});
+
+afterAll(async() => {
+    await sequelize.close();
+});
+
 describe('setupDatabase and insertDummyData functions', () => {
     // check if the sequelize instance resolved
     test('pass if sequelize resolved', () => {
-        expect(sequelize).not.toBeNull(); 
+        console.log(sequelize);
+        expect(sequelize).toBeTruthy(); 
     });
 
     // make sure that something didn't go wrong when inserting data.
     test('pass if data in database', async () => { 
-        await expect(sequelize.models.User.findAll()).resolves.not.toBeNull();
-        await expect(sequelize.models.Guild.findAll()).resolves.not.toBeNull();
-        await expect(sequelize.models.Score.findAll()).resolves.not.toBeNull();
+        await expect(sequelize.models.User.findAll()).resolves.toBeTruthy();
+        await expect(sequelize.models.Guild.findAll()).resolves.toBeTruthy();
+        await expect(sequelize.models.Score.findAll()).resolves.toBeTruthy();
     });
 });
 

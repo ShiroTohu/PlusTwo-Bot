@@ -1,13 +1,18 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../helpers/testDatabase.js');
+const setupTestDatabase = require('../helpers/testDatabase.js');
 
 const existingGuildId = '827597916039016962';
 const existingUserId = '997027454665226734';
 
-test('pass if guild model is able to be inserted into database', () => {
-    // want to use a database that isn't in physical memory. We just want to check that it can get in.
-    const sequelize = new Sequelize('sqlite::memory:');
+let sequelize;
+beforeAll(async () => {
+    sequelize = await setupTestDatabase(); 
+});
 
+afterAll(async() => {
+    await sequelize.close();
+});
+
+test('pass if guild model is able to be inserted into database', () => {
     const Guild = require('../../source/database/models/guild.model.js')(sequelize, Sequelize.DataTypes);
     console.log(sequelize.models.Guild); 
     expect(Guild).not.toBeNull();
