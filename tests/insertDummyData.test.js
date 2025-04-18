@@ -6,5 +6,7 @@ test('pass if insertDummyData works', async () => {
     await sequelize.sync();
     await insertDummyData(sequelize);
 
-    await expect(sequelize.models.Score.findAll()).resolves.toBeTruthy();
+    await expect(sequelize.models.Score.findAll()).resolves.toBeTruthy(); 
+    await expect(sequelize.models.Guild.findAll()).resolves.toBeTruthy(); 
+    await expect(sequelize.models.User.findAll()).resolves.toBeTruthy();
 });
