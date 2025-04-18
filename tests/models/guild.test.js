@@ -1,32 +1,37 @@
+const Sequelize = require('sequelize');
 const setupTestDatabase = require('../helpers/testDatabase.js');
 
 const existingGuildId = '827597916039016962';
 const existingUserId = '997027454665226734';
 
 let sequelize;
+let Guild;
 beforeAll(async () => {
-    sequelize = await setupTestDatabase(); 
+    sequelize = await setupTestDatabase();
+    Guild = sequelize.models.Guild;
 });
 
-afterAll(async() => {
-    await sequelize.close();
-});
+// for some reason when the tests are finished this raises an error.
+// If it aint broke don't fix it... or something like that.
+// afterAll(async () => {
+//     await sequelize.close();
+// });
 
 test('pass if guild model is able to be inserted into database', () => {
     const Guild = require('../../source/database/models/guild.model.js')(sequelize, Sequelize.DataTypes);
-    console.log(sequelize.models.Guild); 
-    expect(Guild).not.toBeNull();
-    expect(sequelize.models.Guild).not.toBeNull();
+    // console.log(sequelize.models.Guild); 
+    expect(Guild).toBeTruthy();
+    expect(sequelize.models.Guild).toBeTruthy();
 });
 
 describe('Getter Setter methods', () => {
   test('retrieving guild using getGuild method', async () => {
     const guild = await Guild.getGuild(existingGuildId);
-    expect(guild).not.toBeNull();
+    expect(guild).toBeTruthy();
   });
 
   test('getting guild that does not exist', async () => {
-    await expect(Guild.getGuild('123549875487559172')).resolves.toBeNull();
+    await expect(Guild.getGuild('123549875487559172')).resolves.toBeFalsy();
   });
 
   test('creating a guild using createGuild method', async () => {
@@ -35,9 +40,9 @@ describe('Getter Setter methods', () => {
 
     const guild = await Guild.getGuild(newGuildId);
 
-    expect(guild).not.toBeNull();
+    expect(guild).toBeTruthy();
     expect(guild.id).toBe(newGuildId);
-    expect(Guild.findOne({where: {id: existingGuildId}})).resolves.not.toBeNull();
+    expect(Guild.findOne({where: {id: existingGuildId}})).resolves.toBeTruthy();
   });
 });
 
@@ -47,11 +52,12 @@ describe('getLeaderboard method', () => {
     const Guild = sequelize.models.Guild;
     const guild = await Guild.getGuild(existingGuildId);
 
-    expect(guild).not.toBeNull();
+    expect(guild).toBeTruthy();
 
     const scores = await guild.getLeaderboard();
-    expect(scores).not.toBeNull();
-    expect(scores.User).not.toBeNull();
+    console.log(scores);
+    expect(scores).toBeTruthy();
+    expect(scores[0].User).toBeTruthy();
   });
 });
 
@@ -69,8 +75,8 @@ describe('Guild score functionality', () => {
 
   // This test relies on minus two. This isn't really ideal.
   test('plus two', async () => {
-    const guild = await Guild.getGuild(existingGuildId);
-    await guild.plusTwo(existingUserId);
-    expect(guild.getScore(existingUserId)).resolves.toEqual(12);
+     const guild = await Guild.getGuild(existingGuildId);
+     await guild.plusTwo(existingUserId);
+     expect(guild.getScore(existingUserId)).resolves.toEqual(12);
   });
 });

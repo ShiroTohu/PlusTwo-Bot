@@ -2,7 +2,7 @@ const setupDatabase = require('../source/database/setupDatabase.js');
 const insertDummyData = require('./helpers/insertDummyData.js');
 
 test('pass if insertDummyData works', async () => {
-    const sequelize = setupDatabase();
+    const sequelize = await setupDatabase();
     await sequelize.sync();
     await insertDummyData(sequelize);
 

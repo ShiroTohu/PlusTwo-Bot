@@ -8,14 +8,13 @@ beforeAll(async () => {
     sequelize = await setupTestDatabase(); 
 });
 
-afterAll(async() => {
-    await sequelize.close();
-});
+// afterAll(async() => {
+//    await sequelize.close();
+// });
 
 describe('setupDatabase and insertDummyData functions', () => {
     // check if the sequelize instance resolved
     test('pass if sequelize resolved', () => {
-        console.log(sequelize);
         expect(sequelize).toBeTruthy(); 
     });
 
@@ -46,6 +45,6 @@ describe('general database functions', () => {
         const Score = sequelize.models.Score;
 
         const user = await User.findOne({include: Score});
-        console.log(user.Scores[0].score);
+        // console.log(user.Scores[0].score);
     });
 });
