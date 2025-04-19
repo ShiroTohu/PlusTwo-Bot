@@ -3,10 +3,7 @@ const setupDatabase = require('../../source/database/setupDatabase.js');
 
 // runs the setup then returns the sequelize object to be used in tests.
 async function setupTestDatabase() {
-    const sequelize = setupDatabase();
-    await sequelize.sync();
-
-    // inserts the dummy data into the sequelize instance.
+    const sequelize = await setupDatabase(); 
     await insertDummyData(sequelize);
 
     return sequelize;

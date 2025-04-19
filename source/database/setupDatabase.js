@@ -6,7 +6,7 @@ const env = process.env.NODE_ENV || 'development';
 const { logger } = require('../logger.js');
 const config = require('./config.js')[env];
 
-function setupDatabase() {
+async function setupDatabase() {
   logger.info(`Setting up ${env} Database`);
   // defaults to the devleopment database
   const sequelize = new Sequelize(
@@ -26,6 +26,14 @@ function setupDatabase() {
   Score.belongsTo(User);
   Guild.hasMany(Score);
   Score.belongsTo(Guild);
+
+  // testing environment needs to be renewed each time the database is initalized as opposed to a
+  // production environment. 
+  if (env == "testing") {
+    await sequelize.sync({force: true});
+  } else {
+    await sequelize.sync();
+  }
 
   return sequelize;
 };

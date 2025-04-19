@@ -65,7 +65,7 @@ describe('Guild score functionality', () => {
     test('getScore method', async () => {
         const guild = await Guild.getGuild(existingGuildId);
         expect(guild.getScore(existingUserId)).resolves.toEqual(12);
-    })
+    });
 
     test('minus two', async () => {
         const guild = await Guild.getGuild(existingGuildId);
