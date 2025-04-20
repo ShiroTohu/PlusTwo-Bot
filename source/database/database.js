@@ -1,8 +1,10 @@
-const { logger } = require('../logger.js');
 const setupDatabase = require('./setupDatabase.js');
-const process = require('node:process');
 
 const sequelize = setupDatabase();
+
+(async () => {
+    await sequelize.sync()
+})();
 
 const User = sequelize.models.User;
 const Guild = sequelize.models.Guild;
