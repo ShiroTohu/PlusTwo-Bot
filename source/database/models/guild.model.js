@@ -1,69 +1,69 @@
 const { Model } = require('sequelize');
 
 class Guild extends Model {
-  static async getGuild(id) {
-    return await this.findOne({
-      where: {
-        id: id
-      }
-    });
-  }
+    static async getGuild(id) {
+        return await this.findOne({
+            where: {
+                id: id
+            }
+        });
+    }
 
-  static async createGuild(id) {
-    return await this.create({
-      id: id
-    });
-  }
+    static async createGuild(id) {
+        return await this.create({
+            id: id
+        });
+    }
 
-  // gets the guilds leaderboard
-  async getLeaderboard() {
-    return await this.sequelize.models.Score.findAll({
-      where: {GuildId: this.id},
-      order: [['score', 'DESC']],
-      limit: 10,
-      include: [this.sequelize.models.User]
-    });
-  }
+    // gets the guilds leaderboard
+    async getLeaderboard() {
+        return await this.sequelize.models.Score.findAll({
+            where: {GuildId: this.id},
+            order: [['score', 'DESC']],
+            limit: 10,
+            include: [this.sequelize.models.User]
+        });
+    }
 
-  // retrieve user score
-  async getScore(userId) {
-    const score = await this.sequelize.models.Score.findOne({
-      attributes: ['score'],
-      where: {
-        GuildId: this.id,
-        UserId: userId
-      }
-    });
+    // retrieve user score
+    async getScore(userId) {
+        const score = await this.sequelize.models.Score.findOne({
+            attributes: ['score'],
+            where: {
+                GuildId: this.id,
+                UserId: userId
+            }
+        });
 
-    return score.score;
-  }
+        return score.score;
+    }
 
-  /**
-   * Adds 2 to the users score within the specified guild.
-   * 
-   * @param {*} user discord user object
-   * @returns {model}}
-   */
-  async plusTwo(userId) {
-    return await this.sequelize.models.Score.increment('score', {
-      by: 2,
-      where: {
-        GuildId: this.id,
-        UserId: userId
-      }
-    });
-  }
+    /**
+     * Adds 2 to the users score within the specified guild.
+     * 
+     * @param {*} user discord user object
+     * @returns {model}}
+     */
+    async plusTwo(userId) {
+        return await this.sequelize.models.Score.increment('score', {
+            by: 2,
+            where: {
+                GuildId: this.id,
+                UserId: userId
+            }
+        });
+    }
 
-  // subtracts 2 from the users score. takes in a user object
-  async minusTwo(userId) {
-    return await this.sequelize.models.Score.decrement('score', {
-      by: 2,
-      where: {
-        GuildId: this.id,
-        UserId: userId
-      }
-    });
-  }
+    // subtracts 2 from the users score. takes in a user object
+    async minusTwo(userId) {
+        return await this.sequelize.models.Score.decrement('score', {
+            by: 2,
+            where: {
+                GuildId: this.id,
+                UserId: userId
+            }
+        });
+    }
 }
 
 /**
