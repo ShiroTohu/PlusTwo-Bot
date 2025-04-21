@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { Score } = require('../../database/database.js');
-// const { logger } = require('../../logger')
+const { logger } = require('../../logger')
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -12,11 +12,21 @@ module.exports = {
             where: {UserId: interaction.user.id, GuildId: interaction.guildId}
         });
 
-		const leaderboardEmbed = new EmbedBuilder()
+        
+        if (score) {
+            const leaderboardEmbed = new EmbedBuilder()
 			.setColor(0x0099FF)
 			.setAuthor({ name: `${interaction.user.username}'s score: ${score.score.toString()}`, iconURL: interaction.user.displayAvatarURL() })
-			// .setThumbnail(interaction.user.displayAvatarURL())
-
-        interaction.reply({ embeds: [leaderboardEmbed] });
+			// .setThumbnail(interaction.user.displayAvatarURL()) 
+            
+		    interaction.reply({ embeds: [leaderboardEmbed] });
+        } else { 
+            const leaderboardEmbed = new EmbedBuilder()
+			.setColor(0x0099FF)
+			.setAuthor({ name: `${interaction.user.username}'s score: 0`, iconURL: interaction.user.displayAvatarURL() })
+			// .setThumbnail(interaction.user.displayAvatarURL()) 
+            
+		    interaction.reply({ embeds: [leaderboardEmbed] });
+        } 
 	},
 };
