@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, MessageFlags } = require('discord.js');
 
 const message = `
-### +2 Bot Functionality!
+# +2 Bot Functionality!
 Here are some ways you can alter someones score.
  - Reply to someones message with \`+2\` or \`-2\`
  - Use the \`/plustwo\` or \`/minustwo\` commands
