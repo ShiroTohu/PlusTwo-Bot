@@ -16,14 +16,14 @@ async function getLeaderboard(interaction) {
     logger.info("/leaderboard command triggered");
 
     const guild = await Guild.getGuild(interaction.guildId);
-    const scores = await guild.getLeaderboard(); // TODO: should probably rename this to get scores
-    const topUser = await interaction.client.users.fetch(scores[0].User.id);
 
-    if (!(scores.length == 0)) {
+    if (guild) { 
+        const scores = await guild.getLeaderboard(); // TODO: should probably rename this to get scores
+        const topUser = await interaction.client.users.fetch(scores[0].User.id);
         let leaderboard = '';
         for (i in scores) {
-            const score  =scores[i]
-            leaderboard += `**${score.User.username}**: ${score.score} \n`
+            const score = scores[i];
+            leaderboard += `**${score.User.username}**: ${score.score} \n`;
         }
 
         return new EmbedBuilder()
