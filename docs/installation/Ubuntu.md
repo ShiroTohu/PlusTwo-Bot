@@ -1,1 +1,1 @@
-# Installation on Debian Based Distributions
+# Ubuntu
