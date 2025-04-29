@@ -19,18 +19,18 @@ module.exports = {
 
             if (referenceAuthor == message.author) {
                 await guild[0].minusTwo(referenceAuthor.id);
-                message.react('1325696373903065128');
+                message.reply(`-2 ${referenceAuthor.username}`);
                 return;
             }
 
             switch (message.content) {
                 case "+2":
                     await guild[0].plusTwo(referenceAuthor.id);
-                    reference.react('1325696309671231561');
+                    message.reply(`+2 ${referenceAuthor.username}`);
                     return;
                 case "-2":
-                    await guild[0].minusTwo(referenceAuthor.id);
-                    reference.react('1325696373903065128');
+                    await guild[0].minusTwo(referenceAuthor.id); 
+                    message.reply(`-2 ${referenceAuthor.username}`);
                     return;
             }
         }
