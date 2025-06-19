@@ -2,7 +2,6 @@
 Inspired by [Jerma985](https://www.twitch.tv/jerma985).
 
 ![example gif](./docs/example.gif)
-Inspired by [Jerma985](https://www.twitch.tv/jerma985).
 
 ## Overview
 The +2 Bot is a Discord bot that tracks the number of +2s and -2s among users.
