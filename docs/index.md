@@ -1,10 +1,12 @@
 # +2 Discord Bot Documentation
+
+![example gif](./example.gif)
 Inspired by [Jerma985](https://www.twitch.tv/jerma985).
 
 ## Overview
-The +2 Bot is a discord bot that tracks the amount of +2's and -2's amongst users.
+The +2 Bot is a Discord bot that tracks the number of +2s and -2s among users.
 
-This bot was inspired by Jerma's *Kane and Lynch 2: Dog Days* stream where he and Etalyx had to beat the game in just under 4 hours. For every funny joke they made 2 minutes was added to the 4 hour timer, for every unfunny joke they made 2 minutes was substracted from the timer. The chat would spam "+2" or "-2" to voice their opinions on whether a joke was good or bad. Jerma and Etalyx beat the game with just 45 seconds remaining.
+This bot was inspired by Jerma's stream where he and Etalyx set out to beat Kane and Lynch 2: Dog Days in just under four hours. For every funny joke they made, two minutes were added to the timer; for every unfunny joke, two minutes were subtracted. The chat would spam "+2" or "-2" to voice their opinions on whether a joke was good or bad. Jerma and Etalyx beat the game with just 45 seconds remaining.
 
 <iframe width="1266" height="712" src="https://www.youtube.com/embed/KSp3Q_jvGGs" title="The Kane and Lynch Challenge" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

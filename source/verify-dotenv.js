@@ -29,6 +29,7 @@ function verify() {
 
     checkEnv(requiredVariables);
 
+    // If the production environment variable is specified then the credentials for the server must be in the env file.
     if (process.env.NODE_ENV == 'production') {
         logger.info('production environment variable detected, proceeding to check database credentials in .env')
         checkEnv(databaseVariables);

@@ -1,6 +1,6 @@
 const { Model } = require('sequelize');
 
-class Guild extends Model {
+class Guild extends Model { 
     static async getGuild(id) {
         return await this.findOne({
             where: {
