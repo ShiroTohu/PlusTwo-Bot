@@ -1,7 +1,19 @@
-# +2 Bot
-Inspired by [Jerma985](https://www.twitch.tv/jerma985).
+<h1 align="center">Plus Two Bot</h1>
+
+<p align="center">
+  <a href="https://github.com/ShiroTohu/PlusTwo-Bot/blob/main/LICENSE.txt">
+    <img src="https://img.shields.io/badge/GPL--3.0-red?style=for-the-badge" alt="LICENSE">
+  </a>
+  
+  <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" alt="PYTHON">
+  <img src="https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="NODEJS">
+</p>
 
 ![example gif](./docs/example.gif)
+
+Inspired by [Jerma985](https://www.twitch.tv/jerma985).
+
+
 
 ## Overview
 The +2 Bot is a Discord bot that tracks the number of +2s and -2s among users.
